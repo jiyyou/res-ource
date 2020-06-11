@@ -2,12 +2,13 @@ import React from 'react';
 
 class Header extends React.Component {
 	state = {
-		loggedIn: false
+		loggedIn: false,
+		userProfile: {}
 	}
 
 	// componentDidMount() {
 	// 	const authToken = sessionStorage.getItem('authToken');
-		
+
 
 	// }
 
