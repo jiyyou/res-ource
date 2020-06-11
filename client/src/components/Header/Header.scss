@@ -1,0 +1,64 @@
+@import '../../partials/mixins';
+
+.header {
+	width: 100%;
+
+	position: relative;
+	padding: 0.25rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: white;
+	border-bottom: 1px solid $vgrey;
+	&__logo {
+		width: 45px;
+	}
+	&__search {
+		width: 65%;
+		height: 40px;
+		border-radius: 4px;
+		border: 1px solid $vgrey;
+		background-image: url('../../assets/icon/Icon-search.svg');
+		background-repeat: no-repeat;
+		background-position: 12px 10px;
+		text-indent: 2.5rem;		
+	}
+	&__settings {
+		padding: 0.25rem;
+		width: 40px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 40px;
+		border: 1px solid $vgrey;
+		border-radius: 4px;
+	}
+	&__settingtext {
+		font-size: 0.875rem;
+		font-weight: 300;
+	}
+	&__dropdown {
+		position: absolute;
+		right: 0.25rem;
+		top: 54px;
+		display: flex;
+		flex-direction: column;
+		border-top: 1px solid $vgrey;
+	}
+	&__droplink {
+		display: flex;
+		align-items: center;
+		background-color: white;
+		width: 120px;
+		height: 40px;
+		padding: 0 1rem;
+		border-left: 1px solid $vgrey;
+		border-right: 1px solid $vgrey;
+		border-bottom: 1px solid $vgrey;
+	}
+}
+
+.menuicon {
+	margin-right: 0.5rem;
+	max-width: 1rem;
+}
