@@ -2,6 +2,7 @@ import React from 'react';
 import './Main.scss';
 import PostCard from '../../components/PostCard/PostCard';
 import SubCard from '../../components/SubCard/SubCard';
+import CommentCard from '../../components/CommentCard/CommentCard';
 
 function Main(props) {
 	// componentDidMount() {
@@ -17,6 +18,7 @@ function Main(props) {
 			<ul className='main__posts'>
 				<PostCard />
 				<SubCard />
+				<CommentCard />
 			</ul>
 		</section>
 	)

@@ -1,0 +1,40 @@
+@import '../../partials/mixins';
+
+.commentCard {
+	width: 100%;
+	background-color: white;
+	border: 1px solid $vgrey;
+	border-radius: 4px;
+	&__header {
+		padding: 0.25rem 0.5rem;
+		border-bottom: 1px solid $vgrey;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+	&__desc {
+		font-size: 0.8125rem;
+		width: 100%;
+		margin-bottom: 0.1rem;
+	}
+	&__sub {
+		font-size: 0.8125rem;
+		font-weight: 500;
+		margin-right: auto;
+	}
+	&__text {
+		font-size: 0.8125rem;
+		&--time {
+			font-style: italic;
+			color: $vsilver;
+		}
+	}
+	&__icon {
+		width: 12px !important;
+		margin: 0 0.1rem 0 0.3rem;
+	}
+	&__comment {
+		padding: 0.25rem 0.5rem;
+		font-size: 0.875rem;
+	}
+}

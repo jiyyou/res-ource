@@ -7,7 +7,7 @@
 	background-color: white;
 	margin-bottom: 0.5rem;
 	&__header {
-		padding: 0.25rem;
+		padding: 0.25rem 0.5rem;
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
@@ -37,12 +37,12 @@
 		font-size: 0.875rem;
 	}
 	&__content {
-		padding: 0.25rem;
+		padding: 0.25rem 0.5rem;
 		border-bottom: 1px solid $vgrey;
 		font-size: 0.875rem;
 	}
 	&__footer {
-		padding: 0.25rem;
+		padding: 0.25rem 0.5rem;
 		display: flex;
 		align-items: center;
 		&>p {

@@ -9,7 +9,7 @@ function SubCard(props) {
 			<div className="subCard__textbox">
 				<img src={logo} alt="" className="subCard__avatar" />
 				<div className="subCard__titlebox">
-					<h2 className="subCard__title">/subtitle</h2>
+					<h2 className="subCard__title">/subname</h2>
 					<p className="subCard__membercount">100 members</p>
 				</div>
 				<button className='subCard__join'>+ JOIN</button>

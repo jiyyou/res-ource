@@ -1,4 +1,5 @@
 import React from 'react';
+import './ProfileCard.scss';
 
 function ProfileCard(props) {
 	return (
@@ -6,7 +7,7 @@ function ProfileCard(props) {
 			<div class="profileCard__banner"></div>
 			<div class="profileCard__profilebox">
 				<img src="" alt="" class="profileCard__avatar" />
-				<h2 class="profileCard__name">FIRST NAME, LAST NAME</h2>
+				<h2 class="profileCard__name">fName, lName</h2>
 				<p class="profileCard__username">/username</p>
 				<button>FOLLOW</button>
 				<img class='profileCard__icon' src="" alt="" />
