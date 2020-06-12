@@ -1,17 +1,19 @@
 import React from 'react';
+import './SubCard.scss';
+import logo from '../../assets/logo/RES-ource2.png';
 
 function SubCard(props) {
 	return (
 		<div className="subCard">
-			<div class="subCard__banner"></div>
-			<div class="subCard__header">
-				<img src="" alt="" class="subCard__avatar" />
-				<div class="subCard__titlebox">
-					<h2 class="subCard__title">TITLE</h2>
-					<p class="subCard__membercount">1234</p>
+			<div className="subCard__banner"></div>
+			<div className="subCard__textbox">
+				<img src={logo} alt="" className="subCard__avatar" />
+				<div className="subCard__titlebox">
+					<h2 className="subCard__title">/subtitle</h2>
+					<p className="subCard__membercount">100 members</p>
 				</div>
-				<p class="subCard__description">DESCRIPTION</p>
-				<button>JOIN</button>
+				<button className='subCard__join'>+ JOIN</button>
+				<p className="subCard__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam cursus non velit sit amet vehicula. Praesent vitae ultrices</p>
 			</div>
 		</div>
 	)

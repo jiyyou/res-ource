@@ -1,0 +1,53 @@
+@import '../../partials/mixins';
+
+.subCard {
+	width: 100%;
+	background-color: white;
+	border: 1px solid $vgrey;
+	border-radius: 4px;
+	&__banner {
+		border-bottom: 1px solid $vgrey;
+		height: 45px;
+		background-color: $vlightblue;
+	}
+	&__textbox {
+		padding: 0.5rem;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+	&__avatar {
+		max-width: 40px;
+		max-height: 40px;
+		border: 1px solid $vblack;
+		border-radius: 100%;
+		margin-right: 0.5rem;
+	}
+	&__titlebox {
+		
+	}
+	&__title {
+		font-size: 1rem;
+		font-weight: 500;
+	}
+	&__membercount {
+		color: $vsilver;
+		font-size: 0.8125rem;
+	}
+	&__join {
+		margin-left: auto;
+		border-radius: 4px;
+		height: 30px;
+		width: 60px;
+		background-color: white;
+		border: 1px solid $vlightblue;
+		color: $vlightblue;
+		font-weight: 500;
+
+	}
+	&__description {
+		margin-top: 0.75rem;
+		width: 100%;
+		font-size: 0.875rem;
+	}
+}

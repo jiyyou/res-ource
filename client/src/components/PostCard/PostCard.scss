@@ -4,12 +4,14 @@
 	width: 100%;
 	border: 1px solid $vgrey;
 	border-radius: 4px;
+	background-color: white;
+	margin-bottom: 0.5rem;
 	&__header {
 		padding: 0.25rem;
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
-		border-bottom: 1px solid $vgrey;
+		margin-bottom: 0.1rem;
 	}
 	&__title {
 		width: 100%;
@@ -17,9 +19,13 @@
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+		margin-bottom: 0.2rem;
 	}
 	&__subimg {
-
+		width: 18px;
+		margin-right: 0.1rem;
+		border: 1px solid $vsilver;
+		border-radius: 100%;
 	}
 	&__sub {
 		font-weight: 500;
@@ -30,16 +36,22 @@
 		color: $vsilver;
 		font-size: 0.875rem;
 	}
-	&__contentbox {
+	&__content {
 		padding: 0.25rem;
 		border-bottom: 1px solid $vgrey;
+		font-size: 0.875rem;
 	}
 	&__footer {
 		padding: 0.25rem;
 		display: flex;
 		align-items: center;
+		&>p {
+			margin-right: 0.75rem;
+			font-size: 0.875rem;
+		}
 	}
 	&__icon {
+		margin-right: 0.2rem;
 		&>path {
 			&:hover {
 				color: $vdarkblue;
