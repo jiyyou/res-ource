@@ -1,1 +1,64 @@
 @import '../../partials/mixins';
+
+.profileCard {
+	width: 100%;
+	background-color: white;
+	border: 1px solid $vgrey;
+	margin-bottom: 0.5rem;
+	&__banner {
+		border-bottom: 1px solid $vgrey;
+		height: 45px;
+		background-color: $vskyblue;
+	}
+	&__profilebox {
+		padding: 0.25rem 0.5rem;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+	&__userbox {
+		display: flex;
+		flex-direction: column;
+	}
+	&__name {
+		font-size: 0.875rem;
+	}
+	&__username {
+		font-weight: 500;
+		font-size: 0.8125rem;
+	}
+	&__avatar {
+		max-width: 40px;
+		max-height: 40px;
+		border: 1px solid $vblack;
+		border-radius: 100%;
+		margin-right: 0.5rem;
+	}
+	&__follow {
+		margin-left: auto;
+		border-radius: 4px;
+		height: 30px;
+		width: 60px;
+		background-color: white;
+		border: 1px solid $vlightblue;
+		color: $vlightblue;
+		font-weight: 500;
+	}
+	&__about {
+		padding: 0.25rem 0.5rem;
+		font-size: 0.8125rem;
+	}
+	&__footer {
+		border-top: 1px solid $vgrey;
+		padding: 0.25rem 0.5rem;
+		display: flex;
+		align-items: center;
+		&>p {
+			margin-right: 0.75rem;
+			font-size: 0.875rem;
+		}
+	}
+	&__icon {
+		margin-right: 0.2rem;
+	}
+}
