@@ -1,0 +1,49 @@
+@import '../../partials/mixins';
+
+.postCard {
+	width: 100%;
+	border: 1px solid $vgrey;
+	border-radius: 4px;
+	&__header {
+		padding: 0.25rem;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		border-bottom: 1px solid $vgrey;
+	}
+	&__title {
+		width: 100%;
+		font-weight: 500;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	&__subimg {
+
+	}
+	&__sub {
+		font-weight: 500;
+		font-size: 0.875rem;
+		margin-right: 0.5rem;
+	}
+	&__info {
+		color: $vsilver;
+		font-size: 0.875rem;
+	}
+	&__contentbox {
+		padding: 0.25rem;
+		border-bottom: 1px solid $vgrey;
+	}
+	&__footer {
+		padding: 0.25rem;
+		display: flex;
+		align-items: center;
+	}
+	&__icon {
+		&>path {
+			&:hover {
+				color: $vdarkblue;
+			}
+		}
+	}
+}

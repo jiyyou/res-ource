@@ -21,7 +21,11 @@
 		background-image: url('../../assets/icon/Icon-search.svg');
 		background-repeat: no-repeat;
 		background-position: 12px 10px;
-		text-indent: 2.5rem;		
+		text-indent: 2.5rem;
+		&:focus {
+			border-color: $vlightblue;
+			outline: none;
+		}	
 	}
 	&__settings {
 		padding: 0.25rem;
@@ -32,6 +36,9 @@
 		height: 40px;
 		border: 1px solid $vgrey;
 		border-radius: 4px;
+		&:hover {
+			border-color: $vlightblue;
+		}
 	}
 	&__settingtext {
 		font-size: 0.875rem;

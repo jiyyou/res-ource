@@ -1,26 +1,29 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleUp, faArrowAltCircleDown, faComments } from '@fortawesome/free-solid-svg-icons';
+import './PostCard.scss';
 
 function PostCard(props) {
 	return (
-		<div className="postCard">
-			<div className='postCard__titlebox'>
-				<h3 className="postCard__title">Test</h3>
+		<li className="postCard">
+			<div className='postCard__header'>
+				<h3 className="postCard__title">Interesting title of article</h3>
 				<img className='postCard__subimg' src="" alt="" />
 				<h4 className='postCard__sub'>/sub</h4>
-				<p className='postCard__info'>posted by USER, TIMESTAMP</p>
+				<p className='postCard__info'>posted by user, time</p>
 			</div>
 			<div className='postCard__contentbox'>
 				CONTENT
 			</div>
 			<div className='postCard__footer'>
-				<img className='postCard__icon' src="" alt="" />
-				<p># Up</p>
-				<img className='postCard__icon' src="" alt="" />
-				<p># Down</p>
-				<img className='postCard__icon' src="" alt="" />
-				<p># of comments</p>
+				<FontAwesomeIcon className='postCard__icon' icon={faArrowAltCircleUp} />
+				<p>#</p>
+				<FontAwesomeIcon className='postCard__icon' icon={faArrowAltCircleDown} />
+				<p>#</p>
+				<FontAwesomeIcon className='postCard__icon' icon={faComments} />
+				<p>#</p>
 			</div>
-		</div>
+		</li>
 	)
 }
 
