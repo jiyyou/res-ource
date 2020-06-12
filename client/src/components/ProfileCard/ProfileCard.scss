@@ -11,7 +11,7 @@
 		background-color: $vskyblue;
 	}
 	&__profilebox {
-		padding: 0.25rem 0.5rem;
+		padding: 0.5rem;
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
@@ -43,10 +43,31 @@
 		border: 1px solid $vlightblue;
 		color: $vlightblue;
 		font-weight: 500;
+		font-size: 0.75rem;
 	}
 	&__about {
 		padding: 0.25rem 0.5rem;
 		font-size: 0.8125rem;
+	}
+	&__contribution {
+		padding: 0.5rem;
+	}
+	&__subtitle {
+		font-weight: 500;
+		font-size: 0.875rem;
+		margin-bottom: 0.5rem;
+	}
+	&__contbox {
+		display: flex;
+		margin-bottom: 0.5rem;
+	}
+	&__conttext {
+		// font-weight: 500;
+		font-size: 0.8125rem;
+		width: 50%;
+	}
+	&__contlist {
+
 	}
 	&__footer {
 		border-top: 1px solid $vgrey;
@@ -55,10 +76,18 @@
 		align-items: center;
 		&>p {
 			margin-right: 0.75rem;
-			font-size: 0.875rem;
 		}
+	}
+	&__vote {
+		font-size: 0.8125rem;
 	}
 	&__icon {
 		margin-right: 0.2rem;
+	}
+	&__linkedin {
+		display: flex;
+		align-items: center;
+		margin-left: auto;
+
 	}
 }
