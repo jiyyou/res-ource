@@ -27,12 +27,11 @@ function ProfileCard(props) {
 					<p className="profileCard__conttext">Posts: 30 </p>
 					<p className="profileCard__conttext">Comments: 30 </p>
 				</div>
-				<ul class="profileCard__contlist">
+				<ul className="profileCard__contlist">
 					<ContributionCard />
 					<ContributionCard />
 					<ContributionCard />
 				</ul>
-
 			</div>
 			<div className="profileCard__footer">
 				<FontAwesomeIcon className='profileCard__icon' icon={faArrowAltCircleUp} />
