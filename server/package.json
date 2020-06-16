@@ -9,10 +9,13 @@
   "author": "Jiyo You",
   "license": "ISC",
   "dependencies": {
+    "bookshelf": "^1.2.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-router": "0.0.1",
+    "knex": "^0.21.1",
+    "mysql": "^2.18.1",
     "passport": "^0.4.1",
     "passport-linkedin-oauth2": "^2.0.0"
   }
