@@ -5,12 +5,25 @@ const Post = require('../model/post');
 
 router
 	.route('/')
+	//GET ALL COMMENTS
 	.get((req, res) => {
-		Comment.where(req.query)
+		Comment
 			.fetchAll()
 			.then(comment => {
 				res.status(200).json(comment);
 			});
 	})
+	//CREATE NEW COMMENT
+	.post((req, res) => {
+		new Comment({
+			comment: req.body.comment,
+			post_id: req.body.post_id,
+			user_id: req.body.user_id
+		})
+			.save()
+			.then(newComment => {
+				res.status(201).json(newComment)
+			});
+	});
 
 module.exports = router;

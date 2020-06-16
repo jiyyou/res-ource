@@ -5,6 +5,7 @@ const Post = require('../model/post');
 
 router
 	.route('/')
+	//GET ALL SUB
 	.get((req, res) => {
 		Sub
 			.fetchAll()
@@ -12,6 +13,7 @@ router
 				res.status(200).json(subs);
 			});
 	})
+	//CREATE NEW SUB
 	.post((req, res) => {
 		new Sub({
 			name: req.body.name,
@@ -25,6 +27,7 @@ router
 
 router
 	.route('/:id')
+	//GET SUB
 	.get((req, res) => {
 		Sub.where('id', req.params.id)
 			.fetchAll({ withRelated: ['posts']})
@@ -32,20 +35,6 @@ router
 				res.status(200).json(sub);
 			});
 	})
-	.post((req, res) => {
-		new Post({
-			title: req.body.title,
-			content: req.body.content,
-			sub_id: req.params.id
-		})
-			.save()
-			.then(newPost => {
-				console.log(newPost);
-				res.status(201).json(newPost);
-			})
-			.catch(err => {
-				console.log(err);
-			})
-	});
+
 
 module.exports = router;

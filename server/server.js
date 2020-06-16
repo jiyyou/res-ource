@@ -5,6 +5,7 @@ const authRoutes = require('./routes/authRoutes');
 const commentsRoutes = require('./routes/commentsRoutes');
 const postsRoutes = require('./routes/postsRoutes');
 const subRoutes = require('./routes/subRoutes')
+const userRoutes = require('./routes/userRoutes');
 const passportSetup = require('./config/passportSetup');
 
 require('dotenv').config();
@@ -15,8 +16,9 @@ app.use(express.json());
 
 //routes
 app.use('/auth', authRoutes);
-app.use('/comments', commentsRoutes);
-app.use('/posts', postsRoutes);
-app.use('/sub', subRoutes);
+app.use('/api/comments', commentsRoutes);
+app.use('/api/posts', postsRoutes);
+app.use('/api/sub', subRoutes);
+app.use('/api/user', userRoutes);
 
 app.listen(port, () => console.log(`listening on http://localhost:${port}`));
