@@ -1,11 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 import './Main.scss';
 import PostCard from '../../components/PostCard/PostCard';
-import SubCard from '../../components/SubCard/SubCard';
-import CommentCard from '../../components/CommentCard/CommentCard';
-import ProfileCard from '../../components/ProfileCard/ProfileCard';
 
 class Main extends React.Component{
 	state = {
@@ -36,7 +34,7 @@ class Main extends React.Component{
 				commentCount={post.comment.length}
 				postId={post.id}
 				date={Date.parse(post.updated_at)}
-				key={post.id} />
+				key={uuidv4()} />
 		}).sort(function(a,b) {
 			return b.props.date - a.props.date;
 		})
@@ -48,7 +46,6 @@ class Main extends React.Component{
 				<Link to='/sub'>
 					<button className='main__button'>BROWSE FOR SUBS</button>
 				</Link>
-				<button className='main__button main__button--inverse'>+ CREATE NEW POST</button>
 				<ul className='main__posts'>
 					{this.renderPostList()}
 				</ul>

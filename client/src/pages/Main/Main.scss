@@ -19,15 +19,5 @@
 		&:hover {
 			background-color: $vdarkblue;
 		}
-		&--inverse {
-			background-color: white;
-			border: 1px solid $vlightblue;
-			color: $vlightblue;
-			&:hover {
-				background-color: $vdarkblue;
-				border-color: $vdarkblue;
-				color: white;
-			}
-		}
 	}
 }

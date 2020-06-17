@@ -22,11 +22,13 @@ class Sub extends React.Component {
 						if (user.id === post.user_id) {
 							return user;
 						}
+						return '';
 					})
 					let filteredComments = res.data[0].postComments.filter(comment => {
 						if (comment.post_id === post.id) {
 							return comment;
 						}
+						return '';
 					})
 					post.author = filteredUser[0].fName + ' ' + filteredUser[0].lName;
 					post.commentCount = filteredComments.length;

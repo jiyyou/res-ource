@@ -25,6 +25,7 @@
 	}
 	&__description {
 		margin: 0.5rem 0;
+		width: 100%;
 	}
 	&__avatar {
 		width: 60px;
@@ -47,6 +48,7 @@
 		&:hover {
 			background-color: $vdarkblue;
 			color: white;
+			border: none;
 		}
 		&--inverse {
 			border: none;

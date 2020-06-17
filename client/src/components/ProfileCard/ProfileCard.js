@@ -7,7 +7,24 @@ import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import ContributionCard from '../ContributionCard/ContributionCard';
 
 function ProfileCard(props) {
-	console.log(props);
+	//RENDER CONTRIBUTION CARDS WITH UPVOTES/DOWNVOTES FOR EACH SUB
+	const renderContribution = () => {
+		let upvoteKeys = Object.keys(props.upvotes);
+		return upvoteKeys.map(sub => {
+			return <ContributionCard sub={sub} totalUpvote={props.upvotes[sub]} totalDownvote={props.downvotes[sub]} />
+		});
+	}
+
+	//GET USER TOTAL UPVOTES/DOWNVOTES
+	const sumOfVotes = (obj) => {
+		let arrayOfValues = Object.values(obj);
+		let totalVotes = 0;
+		arrayOfValues.forEach(vote => {
+			totalVotes += vote;
+		})
+		return totalVotes;
+	}
+
 	return (
 		<div className="profileCard">
 			<div className="profileCard__banner"></div>
@@ -27,16 +44,14 @@ function ProfileCard(props) {
 					<p className="profileCard__conttext">Comments: {props.commentCount}</p>
 				</div>
 				<ul className="profileCard__contlist">
-					<ContributionCard />
-					<ContributionCard />
-					<ContributionCard />
+					{renderContribution()}
 				</ul>
 			</div>
 			<div className="profileCard__footer">
 				<FontAwesomeIcon className='profileCard__icon' icon={faArrowAltCircleUp} />
-				<p className="profileCard__vote">10</p>
+				<p className="profileCard__vote">{sumOfVotes(props.upvotes)}</p>
 				<FontAwesomeIcon className='profileCard__icon' icon={faArrowAltCircleDown} />
-				<p className="profileCard__vote">10</p>
+				<p className="profileCard__vote">{sumOfVotes(props.downvotes)}</p>
 				<div className="profileCard__linkedin">
 					<FontAwesomeIcon className='profileCard__icon' icon={faLinkedin} />
 				</div>

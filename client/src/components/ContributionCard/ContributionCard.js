@@ -8,12 +8,12 @@ function ContributionCard(props) {
 	return (
 		<li className="contributionCard">
 			<img className='contributionCard__avatar' src={logo} alt="" />
-			<h3 className='contributionCard__sub'>/subName</h3>
+			<h3 className='contributionCard__sub'>/{props.sub}</h3>
 			<div className="contributionCard__votebox">
 				<FontAwesomeIcon className='contributionCard__icon' icon={faArrowAltCircleUp} />
-				<p className='contributionCard__count'>10</p>
+				<p className='contributionCard__count'>{props.totalUpvote}</p>
 				<FontAwesomeIcon className='contributionCard__icon' icon={faArrowAltCircleDown} />
-				<p className='contributionCard__count'>10</p>
+				<p className='contributionCard__count'>{props.totalDownvote}</p>
 			</div>
 		</li>
 	)
