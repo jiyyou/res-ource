@@ -5,6 +5,7 @@
 	background-color: white;
 	border: 1px solid $vgrey;
 	border-radius: 4px;
+	margin-bottom: 0.5rem;
 	&__header {
 		padding: 0.25rem 0.5rem;
 		border-bottom: 1px solid $vgrey;
@@ -17,6 +18,12 @@
 		width: 100%;
 		margin-bottom: 0.1rem;
 	}
+	&__user {
+		font-style: italic;
+	}
+	&__title {
+		font-style: italic;
+	}
 	&__sub {
 		font-size: 0.8125rem;
 		font-weight: 500;
@@ -27,6 +34,7 @@
 		&--time {
 			font-style: italic;
 			color: $vsilver;
+			margin-left: auto;
 		}
 	}
 	&__icon {

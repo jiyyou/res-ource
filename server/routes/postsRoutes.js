@@ -8,7 +8,7 @@ router
 	//GET ALL POSTS
 	.get((req, res) => {
 		Post
-			.fetchAll({ withRelated: ['comment', 'user']})
+			.fetchAll({ withRelated: ['comment', 'user', 'sub']})
 			.then(posts => {
 				res.status(200).json(posts);
 			})
@@ -35,7 +35,7 @@ router
 	//GET POST
 	.get((req, res) => {
 		Post.where('id', req.params.id)
-			.fetchAll({ withRelated: ["comment", "user", 'commentUser'] })
+			.fetchAll({ withRelated: ["comment", "user", 'commentUser', 'sub'] })
 			.then(post => {
 				res.status(200).json(post);
 			});

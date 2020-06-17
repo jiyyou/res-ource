@@ -8,20 +8,18 @@ function CommentCard(props) {
 		<div className="commentCard">
 			<div className="commentCard__header">
 				<p className="commentCard__desc">
-					<span className="commentCard__user">user </span>
-					commented on 
-					<span className="commentCard__title"> post title</span>
+					<span className="commentCard__user">{props.author + ' '}</span>
+					commented on
+					<span className="commentCard__title">{' ' + props.title}</span>
 				</p>
-				<h3 className="commentCard__sub">/subname</h3>
+				<h3 className="commentCard__sub">/{props.sub}</h3>
 				<p className="commentCard__text commentCard__text--time">2d</p>
 				<FontAwesomeIcon className='commentCard__icon' icon={faArrowAltCircleUp} />
-				<p className="commentCard__text">20</p>
+				<p className="commentCard__text">{props.upvote}</p>
 				<FontAwesomeIcon className='commentCard__icon' icon={faArrowAltCircleDown} />
-				<p className="commentCard__text">20</p>
+				<p className="commentCard__text">{props.downvote}</p>
 			</div>
-			<p className="commentCard__comment">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam cursus non velit sit amet vehicula. Praesent vitae ultrices
-			</p>
+			<p className="commentCard__comment">{props.comment}</p>
 		</div>
 	)
 }

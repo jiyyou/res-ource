@@ -10,6 +10,9 @@ const Post = bookshelf.model("Post", {
   },
   commentUser: function() {
   	return this.belongsToMany("User").through('Comment');
+  },
+  sub: function() {
+    return this.belongsTo('Sub');
   }
 });
 

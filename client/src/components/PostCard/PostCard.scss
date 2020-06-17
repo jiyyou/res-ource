@@ -15,6 +15,7 @@
 	}
 	&__title {
 		width: 100%;
+		font-size: 1.1rem;
 		font-weight: 500;
 		white-space: nowrap;
 		overflow: hidden;
@@ -22,19 +23,20 @@
 		margin-bottom: 0.2rem;
 	}
 	&__subimg {
-		width: 18px;
+		width: 15px;
 		margin-right: 0.1rem;
 		border: 1px solid $vsilver;
 		border-radius: 100%;
 	}
 	&__sub {
 		font-weight: 500;
-		font-size: 0.875rem;
+		font-size: 0.8125rem;
 		margin-right: 0.5rem;
 	}
 	&__info {
+		margin-left: auto;
 		color: $vsilver;
-		font-size: 0.875rem;
+		font-size: 0.8125rem;
 	}
 	&__content {
 		padding: 0.25rem 0.5rem;

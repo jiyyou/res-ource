@@ -7,6 +7,7 @@ import Main from '../../pages/Main/Main';
 import Browse from '../../pages/Browse/Browse';
 import Profile from '../../pages/Profile/Profile';
 import Sub from '../../pages/Sub/Sub';
+import Post from '../../pages/Post/Post';
 import logo from '../../assets/logo/RES-ource.png';
 import './Header.scss';
 
@@ -15,7 +16,7 @@ class Header extends React.Component {
 	state = {
 		loggedIn: false,
 		settingDropDown: false,
-		userProfile: {}
+		userProfile: {},
 	}
 
 	//CLICK HANDLER FOR DROP DOWN MENU
@@ -64,14 +65,6 @@ class Header extends React.Component {
 		}
 	}
 
-	componentDidMount() {
-		axios
-			.get('http://localhost:8080/posts')
-			.then(res => {
-
-			})
-	}
-
 	render() {
 		return (
 			<>
@@ -90,13 +83,13 @@ class Header extends React.Component {
 						</nav>
 					}
 				</header>
-				<Main />
-	        {/*<Switch>
+	        <Switch>
 	          <Route path="/" exact component={Main} />
 	          <Route path="/sub" exact component={Browse} />
 	          <Route path="/sub/:id" component={Sub} />
-	          <Route path="/profile/:id" component={Profile} />	          
-	        </Switch>*/}
+	          <Route path="/profile/:id" component={Profile} />
+	          <Route path='/post/:id' component={Post} />          
+	        </Switch>
 			</>
 		)
 	}
