@@ -8,15 +8,19 @@ import logo from '../../assets/logo/RES-ource2.png';
 function PostCard(props) {
 	return (
 		<li className="postCard">
-			<Link to={'/post/' + props.postId}>
-				<div className='postCard__header'>
+			<div className='postCard__header'>
+				<Link to={'/post/' + props.postId} className='postCard__link'>
 					<h3 className="postCard__title">{props.title}</h3>
+				</Link>
+				<Link to={'/sub/' + props.subId}>
 					<img className='postCard__subimg' src={logo} alt="" />
 					<h4 className='postCard__sub'>/{props.sub}</h4>
-					<p className='postCard__info'>{props.author}, time</p>
-				</div>
+				</Link>
+				<p className='postCard__info'>{props.author}, time</p>
+			</div>
+			<Link to={'/post/' + props.postId} className='postCard__link'>
+				<p className='postCard__content'>{props.content}</p>
 			</Link>
-			<p className='postCard__content'>{props.content}</p>
 			<div className='postCard__footer'>
 				<FontAwesomeIcon className='postCard__icon' icon={faArrowAltCircleUp} />
 				<p>{props.upvote}</p>

@@ -1,0 +1,63 @@
+@import '../../partials/mixins';
+
+.sub {
+	&__banner {
+		width: 100%;
+		height: 50px;
+		background-color: $vlightblue;
+	}
+	&__header {
+		width: 100%;
+		padding: 0.5rem;
+		background-color: white;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		border-bottom: 1px solid $vgrey;
+	}
+	&__title {
+		font-weight: 500;
+		font-size: 1.25rem;
+	}
+	&__members {
+		color: $vsilver;
+		font-size: 0.875rem;
+	}
+	&__description {
+		margin: 0.5rem 0;
+	}
+	&__avatar {
+		width: 60px;
+		border: 1px solid $vblack;
+		border-radius: 100%;
+		margin-right: 0.75rem;
+	}
+	&__button {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 2rem;		
+		background-color: white;
+		border: 1px solid $vlightblue;
+		border-radius: 4px;
+		color: $vlightblue;
+		font-weight: 500;
+		margin: 0.5rem 0;
+		&:hover {
+			background-color: $vdarkblue;
+			color: white;
+		}
+		&--inverse {
+			border: none;
+			background-color: $vlightblue;
+			color: white;
+		}
+	}
+	&__body {
+		padding: 0 0.5rem;
+	}
+	&__postlist {
+		
+	}
+}

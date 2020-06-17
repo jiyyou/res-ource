@@ -8,6 +8,9 @@ const Sub = bookshelf.model("Sub", {
   postUsers: function() {
   	return this.belongsToMany("User").through('Post');
   },
+  postComments: function() {
+  	return this.hasMany("Comment").through('Post');
+  },
   subscribers: function() {
   	return this.hasMany('Subscription');
   }

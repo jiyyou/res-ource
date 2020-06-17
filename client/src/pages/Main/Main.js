@@ -18,8 +18,6 @@ class Main extends React.Component{
 			.then(res => {
 				this.setState({
 					postList: res.data
-				}, () => {
-					console.log(this.state);
 				})
 			})
 	}
@@ -29,6 +27,7 @@ class Main extends React.Component{
 			return <PostCard 
 				title={post.title}
 				sub={post.sub.name}
+				subId={post.sub.id}
 				author={post.user.fName + ' ' + post.user.lName}
 				content={post.content}
 				upvote={post.upvote}

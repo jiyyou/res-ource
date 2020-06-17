@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import './SubCard.scss';
 import logo from '../../assets/logo/RES-ource2.png';
 
@@ -9,11 +10,15 @@ function SubCard(props) {
 			<div className="subCard__textbox">
 				<img src={logo} alt="" className="subCard__avatar" />
 				<div className="subCard__titlebox">
-					<h2 className="subCard__title">/subname</h2>
-					<p className="subCard__membercount">100 members</p>
+					<Link to={'/sub/' + props.subId}>
+						<h2 className="subCard__title">/{props.title}</h2>
+					</Link>
+					<p className="subCard__membercount">{props.memberCount} members</p>
 				</div>
 				<button className='subCard__join'>+ JOIN</button>
-				<p className="subCard__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam cursus non velit sit amet vehicula. Praesent vitae ultrices</p>
+				<Link to={'/sub/' + props.subId}>
+					<p className="subCard__description">{props.description}</p>
+				</Link>				
 			</div>
 		</div>
 	)

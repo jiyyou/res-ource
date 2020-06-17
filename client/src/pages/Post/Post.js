@@ -17,7 +17,8 @@ class Post extends React.Component {
 		downvote: '',
 		author: '',
 		sub: '',
-		comment: [],
+		subId: '',
+		comment: []
 	}
 
 	componentDidMount() {
@@ -40,6 +41,7 @@ class Post extends React.Component {
 					downvote: res.data[0].downvote,
 					author: res.data[0].user.fName + ' ' + res.data[0].user.lName,
 					sub: res.data[0].sub.name,
+					subId: res.data[0].sub.id,
 					comment: res.data[0].comment
 				})
 			})
@@ -68,6 +70,7 @@ class Post extends React.Component {
 				<PostCard
 					title={this.state.title}
 					sub={this.state.sub}
+					subId={this.state.subId}
 					author={this.state.author}
 					content={this.state.content}
 					upvote={this.state.upvote}
