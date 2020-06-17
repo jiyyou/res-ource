@@ -30,7 +30,7 @@ router
 	//GET SUB
 	.get((req, res) => {
 		Sub.where('id', req.params.id)
-			.fetchAll({ withRelated: ['posts']})
+			.fetchAll({ withRelated: ['posts', 'postUsers']})
 			.then(sub => {
 				res.status(200).json(sub);
 			});

@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../model/user');
 const Comment = require("../model/comment");
 const Post = require('../model/post');
+const Subscription = require('../model/subscription');
 
 router
 	.route('/')
@@ -33,7 +34,7 @@ router
 	//GET USER
 	.get((req, res) => {
 		User.where('id', req.params.id)
-			.fetchAll({ withRelated: ['posts', 'comments']})
+			.fetchAll({ withRelated: ['posts', 'comments', 'subscriptions']})
 			.then(user => {
 				res.status(200).json(user);
 			});

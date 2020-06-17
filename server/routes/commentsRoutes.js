@@ -8,7 +8,7 @@ router
 	//GET ALL COMMENTS
 	.get((req, res) => {
 		Comment
-			.fetchAll()
+			.fetchAll({ withRelated: ['user', 'post']})
 			.then(comment => {
 				res.status(200).json(comment);
 			});

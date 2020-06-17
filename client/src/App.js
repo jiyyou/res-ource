@@ -8,10 +8,6 @@ function App() {
   return (
       <BrowserRouter>
         <Header />
-        <Main />
-        <Switch>
-          {/*<Route path="/" exact component={Warehouse} />*/}
-        </Switch>
       </BrowserRouter>
   );
 }

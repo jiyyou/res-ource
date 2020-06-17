@@ -3,10 +3,13 @@ const bookshelf = require("../bookshelf");
 const User = bookshelf.model("User", {
   tableName: "user",
   posts: function() {
-  	return this.hasMany("Post", 'user_id');
+  	return this.hasMany("Post");
   },
   comments: function() {
-  	return this.hasMany("Comment", 'user_id');
+  	return this.hasMany("Comment");
+  },
+  subscriptions: function() {
+  	return this.belongsToMany('Sub').through('Subscription');
   }
 });
 

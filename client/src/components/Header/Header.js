@@ -1,9 +1,12 @@
 import React from 'react';
-// import HeaderDropDown from '../HeaderDropDown/HeaderDropDown';
-// import onClickOutside from "react-onclickoutside";
-import { Link } from "react-router-dom";
+import axios from 'axios';
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faCaretDown, faUserPlus, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import Main from '../../pages/Main/Main';
+import Browse from '../../pages/Browse/Browse';
+import Profile from '../../pages/Profile/Profile';
+import Sub from '../../pages/Sub/Sub';
 import logo from '../../assets/logo/RES-ource.png';
 import './Header.scss';
 
@@ -15,6 +18,7 @@ class Header extends React.Component {
 		userProfile: {}
 	}
 
+	//CLICK HANDLER FOR DROP DOWN MENU
 	settingClickHandler = () => {
 		if (this.state.settingDropDown === false) {
 			this.setState({
@@ -28,6 +32,7 @@ class Header extends React.Component {
 		}
 	}
 
+	//DROP DOWN MENU RENDER FUNCTION
 	renderDropDown = () => {
 		if (this.state.loggedIn === false) {
 			return (
@@ -59,32 +64,40 @@ class Header extends React.Component {
 		}
 	}
 
-	// handleClickOutside = () => {
-	// 	console.log('test');
-	// 	if (this.state.settingDropDown === true) {
-	// 		this.setState({
-	// 			settingDropDown: false
-	// 		})
-	// 	}
-	// }
+	componentDidMount() {
+		axios
+			.get('http://localhost:8080/posts')
+			.then(res => {
+
+			})
+	}
 
 	render() {
 		return (
-			<header className='header'>
-				<Link to='/'>
-					<img src={logo} alt="RES-ource" className="header__logo" />
-				</Link>
-				<input className='header__search' type="text" placeholder="Search" />
-				<div className="header__settings" onClick={this.settingClickHandler}>
-					<FontAwesomeIcon className='userIcon' icon={faUser} />
-					<FontAwesomeIcon className='dropDownIcon' icon={faCaretDown} />
-				</div>
-				{this.state.settingDropDown===true &&
-					<nav className='header__dropdown'>
-						{this.renderDropDown()}
-					</nav>
-				}
-			</header>
+			<>
+				<header className='header'>
+					<Link to='/'>
+						<img src={logo} alt="RES-ource" className="header__logo" />
+					</Link>
+					<input className='header__search' type="text" placeholder="Search" />
+					<div className="header__settings" onClick={this.settingClickHandler}>
+						<FontAwesomeIcon className='userIcon' icon={faUser} />
+						<FontAwesomeIcon className='dropDownIcon' icon={faCaretDown} />
+					</div>
+					{this.state.settingDropDown===true &&
+						<nav className='header__dropdown'>
+							{this.renderDropDown()}
+						</nav>
+					}
+				</header>
+				<Main />
+	        {/*<Switch>
+	          <Route path="/" exact component={Main} />
+	          <Route path="/sub" exact component={Browse} />
+	          <Route path="/sub/:id" component={Sub} />
+	          <Route path="/profile/:id" component={Profile} />	          
+	        </Switch>*/}
+			</>
 		)
 	}
 }
