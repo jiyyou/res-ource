@@ -18,7 +18,8 @@ router
 		new Comment({
 			comment: req.body.comment,
 			post_id: req.body.post_id,
-			user_id: req.body.user_id
+			user_id: req.body.user_id,
+			sub_id: req.body.sub_id
 		})
 			.save()
 			.then(newComment => {

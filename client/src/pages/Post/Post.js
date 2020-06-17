@@ -16,9 +16,11 @@ class Post extends React.Component {
 		upvote: "",
 		downvote: '',
 		author: '',
+		userId: '',
 		sub: '',
 		subId: '',
-		comment: []
+		comment: [],
+		date: ''
 	}
 
 	componentDidMount() {
@@ -40,9 +42,11 @@ class Post extends React.Component {
 					upvote: res.data[0].upvote,
 					downvote: res.data[0].downvote,
 					author: res.data[0].user.fName + ' ' + res.data[0].user.lName,
+					userId: res.data[0].user_id,
 					sub: res.data[0].sub.name,
 					subId: res.data[0].sub.id,
-					comment: res.data[0].comment
+					comment: res.data[0].comment,
+					date: res.data[0].updated_at
 				})
 			})
 			.catch(err => {
@@ -50,7 +54,7 @@ class Post extends React.Component {
 			})
 	}
 
-	//CREATE COMMENT LIST
+	//CREATE COMMENT LIST (SORT BY LATEST)
 	renderComments = () => {
 		return this.state.comment.map(comment => {
 			return <CommentCard
@@ -60,9 +64,14 @@ class Post extends React.Component {
 				upvote={comment.upvote}
 				downvote={comment.downvote}
 				comment={comment.comment}
+				date={Date.parse(comment.updated_at)}
 				key={comment.id} />
+		}).sort(function(a,b) {
+			return b.props.date - a.props.date;
 		})
 	}
+
+			
 
 	render() {
 		return (
@@ -72,10 +81,12 @@ class Post extends React.Component {
 					sub={this.state.sub}
 					subId={this.state.subId}
 					author={this.state.author}
+					userId={this.state.userId}
 					content={this.state.content}
 					upvote={this.state.upvote}
 					downvote={this.state.downvote}
-					commentCount={this.state.comment.length} />
+					commentCount={this.state.comment.length}
+					date={Date.parse(this.state.date)} />
 				<ul>
 					{this.renderComments()}
 				</ul>

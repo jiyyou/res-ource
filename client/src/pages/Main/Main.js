@@ -29,12 +29,16 @@ class Main extends React.Component{
 				sub={post.sub.name}
 				subId={post.sub.id}
 				author={post.user.fName + ' ' + post.user.lName}
+				userId={post.user_id}
 				content={post.content}
 				upvote={post.upvote}
 				downvote={post.downvote}
 				commentCount={post.comment.length}
 				postId={post.id}
+				date={Date.parse(post.updated_at)}
 				key={post.id} />
+		}).sort(function(a,b) {
+			return b.props.date - a.props.date;
 		})
 	}
 

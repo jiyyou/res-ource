@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleUp, faArrowAltCircleDown, faComments } from '@fortawesome/free-solid-svg-icons';
 import './PostCard.scss';
 import logo from '../../assets/logo/RES-ource2.png';
+import timeSince from '../../helpers/timeSince';
 
 function PostCard(props) {
 	return (
@@ -16,7 +17,9 @@ function PostCard(props) {
 					<img className='postCard__subimg' src={logo} alt="" />
 					<h4 className='postCard__sub'>/{props.sub}</h4>
 				</Link>
-				<p className='postCard__info'>{props.author}, time</p>
+				<Link to={'/profile/' + props.userId}>
+					<p className='postCard__info'>{props.author}, {timeSince(props.date)}</p>
+				</Link>
 			</div>
 			<Link to={'/post/' + props.postId} className='postCard__link'>
 				<p className='postCard__content'>{props.content}</p>

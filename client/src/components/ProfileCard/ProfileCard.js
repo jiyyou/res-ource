@@ -7,25 +7,24 @@ import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import ContributionCard from '../ContributionCard/ContributionCard';
 
 function ProfileCard(props) {
+	console.log(props);
 	return (
 		<div className="profileCard">
 			<div className="profileCard__banner"></div>
 			<div className="profileCard__profilebox">
 				<img src={logo} alt="" className="profileCard__avatar" />
 				<div className='profileCard__userbox'>
-					<h2 className="profileCard__name">fName, lName</h2>
+					<h2 className="profileCard__name">{props.name}</h2>
 					<p className="profileCard__username">/username</p>
 				</div>
 				<button className='profileCard__follow'>FOLLOW</button>
 			</div>
-			<p className="profileCard__about">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam cursus non velit sit amet vehicula. Praesent vitae ultrices
-			</p>
+			<p className="profileCard__about">{props.description}</p>
 			<div className="profileCard__contribution">				
 				<h3 className="profileCard__subtitle">Contributions</h3>
 				<div className="profileCard__contbox">
-					<p className="profileCard__conttext">Posts: 30 </p>
-					<p className="profileCard__conttext">Comments: 30 </p>
+					<p className="profileCard__conttext">Posts: {props.postCount}</p>
+					<p className="profileCard__conttext">Comments: {props.commentCount}</p>
 				</div>
 				<ul className="profileCard__contlist">
 					<ContributionCard />

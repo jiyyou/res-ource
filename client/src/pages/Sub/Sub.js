@@ -44,7 +44,7 @@ class Sub extends React.Component {
 		})
 	}
 
-	//CREATE POST LIST
+	//CREATE POST LIST (SORT BY LATEST)
 	renderPosts = () => {
 		return this.state.posts.map(post => {
 			return <PostCard 
@@ -52,11 +52,15 @@ class Sub extends React.Component {
 				title={post.title}
 				sub={this.state.name}
 				author={post.author}
+				userId={post.user_id}
 				content={post.content}
 				upvote={post.upvote}
 				downvote={post.downvote}
 				commentCount={post.commentCount}
+				date={Date.parse(post.updated_at)}
 				key={post.id} />
+		}).sort(function(a,b) {
+			return b.props.date - a.props.date;
 		})
 	}
 

@@ -5,8 +5,17 @@ const User = bookshelf.model("User", {
   posts: function() {
   	return this.hasMany("Post");
   },
+  postSubs: function() {
+  	return this.belongsToMany('Sub').through('Post')
+  },
   comments: function() {
   	return this.hasMany("Comment");
+  },
+  commentPosts: function() {
+  	return this.belongsToMany('Post').through('Comment');
+  },
+  commentSubs: function() {
+  	return this.belongsToMany('Sub').through('Comment');
   },
   subscriptions: function() {
   	return this.belongsToMany('Sub').through('Subscription');

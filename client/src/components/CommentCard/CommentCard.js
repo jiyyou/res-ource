@@ -2,6 +2,7 @@ import React from 'react';
 import './CommentCard.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleUp, faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons';
+import timeSince from '../../helpers/timeSince';
 
 function CommentCard(props) {
 	return (
@@ -13,7 +14,7 @@ function CommentCard(props) {
 					<span className="commentCard__title">{' ' + props.title}</span>
 				</p>
 				<h3 className="commentCard__sub">/{props.sub}</h3>
-				<p className="commentCard__text commentCard__text--time">2d</p>
+				<p className="commentCard__text commentCard__text--time">{timeSince(props.date)}</p>
 				<FontAwesomeIcon className='commentCard__icon' icon={faArrowAltCircleUp} />
 				<p className="commentCard__text">{props.upvote}</p>
 				<FontAwesomeIcon className='commentCard__icon' icon={faArrowAltCircleDown} />
