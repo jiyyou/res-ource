@@ -34,8 +34,8 @@ class Profile extends React.Component {
 					})
 					post.sub = filteredSub[0];
 					//COUNTER FOR UPVOTE/DOWNVOTE OF POSTS IN EACH CONTRIBUTED SUB
-					!totalUpvote[post.sub.name] ? totalUpvote[post.sub.name] = post.upvote : totalUpvote[post.sub.name] += post.upvote;
-					!totalDownvote[post.sub.name] ? totalDownvote[post.sub.name] = post.downvote : totalDownvote[post.sub.name] -= post.downvote;
+					!totalUpvote[`${post.sub.name}_${post.sub.id}`] ? totalUpvote[`${post.sub.name}_${post.sub.id}`] = post.upvote : totalUpvote[`${post.sub.name}_${post.sub.id}`] += post.upvote;
+					!totalDownvote[`${post.sub.name}_${post.sub.id}`] ? totalDownvote[`${post.sub.name}_${post.sub.id}`] = post.downvote : totalDownvote[`${post.sub.name}_${post.sub.id}`] -= post.downvote;
 					//=====================================================
 					return post;
 				})
@@ -57,8 +57,8 @@ class Profile extends React.Component {
 					comment.post = filteredPosts[0];
 					comment.sub = filteredSubs[0];
 					// COUNTER FOR UPVOTE/DOWNVOTE OF COMMENTS IN EACH CONTRIBUTED SUB
-					!totalUpvote[comment.sub.name] ? totalUpvote[comment.sub.name] = comment.upvote : totalUpvote[comment.sub.name] += comment.upvote;
-					!totalDownvote[comment.sub.name] ? totalDownvote[comment.sub.name] = comment.downvote : totalDownvote[comment.sub.name] += comment.downvote;
+					!totalUpvote[`${comment.sub.name}_${comment.sub.id}`] ? totalUpvote[`${comment.sub.name}_${comment.sub.id}`] = comment.upvote : totalUpvote[`${comment.sub.name}_${comment.sub.id}`] += comment.upvote;
+					!totalDownvote[`${comment.sub.name}_${comment.sub.id}`] ? totalDownvote[`${comment.sub.name}_${comment.sub.id}`] = comment.downvote : totalDownvote[`${comment.sub.name}_${comment.sub.id}`] += comment.downvote;
 					// =========================================================
 					return comment;
 				})
@@ -71,8 +71,6 @@ class Profile extends React.Component {
 					commentCount: res.data[0].comments.length,
 					upvotes: totalUpvote,
 					downvotes: totalDownvote
-				}, () => {
-					console.log(this.state);
 				})
 			})
 	}

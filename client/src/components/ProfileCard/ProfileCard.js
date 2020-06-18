@@ -4,6 +4,7 @@ import logo from '../../assets/logo/RES-ource2.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleUp, faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { v4 as uuidv4 } from 'uuid';
 import ContributionCard from '../ContributionCard/ContributionCard';
 
 function ProfileCard(props) {
@@ -11,7 +12,12 @@ function ProfileCard(props) {
 	const renderContribution = () => {
 		let upvoteKeys = Object.keys(props.upvotes);
 		return upvoteKeys.map(sub => {
-			return <ContributionCard sub={sub} totalUpvote={props.upvotes[sub]} totalDownvote={props.downvotes[sub]} />
+			return <ContributionCard
+				sub={sub.split('_')[0]}
+				sub_id={sub.split('_')[1]}
+				totalUpvote={props.upvotes[sub]}
+				totalDownvote={props.downvotes[sub]}
+				key={uuidv4()} />
 		});
 	}
 
