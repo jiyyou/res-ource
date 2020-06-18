@@ -3,6 +3,7 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import PostCard from '../../components/PostCard/PostCard';
 import CommentCard from '../../components/CommentCard/CommentCard';
+import CommentForm from '../../components/CommentForm/CommentForm';
 import './Post.scss';
 
 
@@ -18,7 +19,9 @@ class Post extends React.Component {
 		sub: '',
 		subId: '',
 		comment: [],
-		date: ''
+		date: '',
+		commentStatus: false,
+		userComment: ''
 	}
 
 	componentDidMount() {
@@ -73,7 +76,46 @@ class Post extends React.Component {
 		})
 	}
 
-			
+	//OPEN COMMENT FORM
+	buttonHandler = e => {
+		e.preventDefault();
+		if (!this.state.commentStatus) {
+			this.setState({
+				commentStatus: true
+			});
+		}
+		else {
+			this.setState({
+				commentStatus: false
+			})
+		}
+	}
+	
+	//SUBMIT HANDLER FOR COMMENT POST
+	submitHandler = e => {
+		e.preventDefault();
+		this.setState({
+			userComment: e.target.comment.value
+		}, () => {
+			axios
+				.post('http://localhost:8080/api/comments/', {
+					comment: this.state.userComment,
+					post_id: this.state.postId,
+					sub_id: this.state.subId,
+					user_id: 1
+				})
+				.then(res => {
+					res.data.author = this.state.author;
+					this.setState({
+						comment: this.state.comment.concat(res.data)
+					})
+				})
+				.catch(err => {
+					window.alert(err);
+				})
+		});
+		e.target.reset();
+	}
 
 	render() {
 		return (
@@ -90,6 +132,12 @@ class Post extends React.Component {
 					downvote={this.state.downvote}
 					commentCount={this.state.comment.length}
 					date={Date.parse(this.state.date)} />
+				<button 
+					className={this.state.commentStatus ? 'post__commentbutton post__commentbutton--inverse' : 'post__commentbutton'}
+					onClick={this.buttonHandler}>
+					LEAVE A COMMENT
+				</button>
+				{this.state.commentStatus ? <CommentForm submitHandler={this.submitHandler} buttonHandler={this.buttonHandler} /> : ''}
 				<ul>
 					{this.renderComments()}
 				</ul>
