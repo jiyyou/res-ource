@@ -6,10 +6,26 @@ import SubCard from '../../components/SubCard/SubCard';
 
 class Browse extends React.Component{
 	state = {
-		subList: []
+		subList: [],
+		isLoggedIn: false,
+		currentUser: {}
 	}
 
 	componentDidMount() {
+		axios
+			.get('http://localhost:8080/auth/check-auth', { withCredentials: true })
+			.then(res => {
+				this.setState({
+					isLoggedIn: true,
+					currentUser: res.data
+				})
+			})
+			.catch(err => {
+				this.setState({
+					isLoggedIn: false,
+					currentUser: {}
+				})
+			})
 		axios
 			.get('http://localhost:8080/api/sub/')
 			.then(res => {

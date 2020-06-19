@@ -2,13 +2,6 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 
-
-//auth logout
-router.get('/logout', (req, res) => {
-	//handle with passport
-	res.send('logging out');
-});
-
 //auth with LinkedIn
 router.get('/', passport.authenticate('linkedin', {
 	scope: ['r_emailaddress', 'r_liteprofile']
@@ -16,7 +9,17 @@ router.get('/', passport.authenticate('linkedin', {
 
 //callback route for LinkedIn to redirect to 
 router.get('/redirect', passport.authenticate('linkedin'), (req, res) => {
-	res.send('you reached the callback URI');
+	res.redirect('http://localhost:3000/');
+})
+
+router.get('/check-auth', (req, res) => {
+	if (req.user === undefined) return res.status(401).send('Unauthorized');
+	res.status(200).json(req.user);
+})
+
+router.get('/logout', (req, res) => {
+	req.logout();
+	res.redirect('http://localhost:3000/');
 })
 
 module.exports = router;

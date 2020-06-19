@@ -2,6 +2,13 @@
 
 .post {
 	padding: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	&> * {
+		width: 100%;
+		max-width: 650px;
+	}
 	&__commentbutton {
 		display: flex;
 		justify-content: center;

@@ -7,10 +7,28 @@ import PostCard from '../../components/PostCard/PostCard';
 
 class Main extends React.Component{
 	state = {
-		postList: []
+		postList: [],
+		isLoggedIn: false,
+		currentUser: {}
 	}
 
 	componentDidMount() {
+		//CHECK IF USER IS LOGGED IN
+		axios
+			.get('http://localhost:8080/auth/check-auth', { withCredentials: true })
+			.then(res => {
+				this.setState({
+					isLoggedIn: true,
+					currentUser: res.data
+				})
+			})
+			.catch(err => {
+				this.setState({
+					isLoggedIn: false,
+					currentUser: {}
+				})
+			})
+		//GET ALL POSTS
 		axios
 			.get('http://localhost:8080/api/posts/')
 			.then(res => {

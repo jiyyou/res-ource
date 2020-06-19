@@ -21,10 +21,28 @@ class Post extends React.Component {
 		comment: [],
 		date: '',
 		commentStatus: false,
-		userComment: ''
+		userComment: '',
+		isLoggedIn: false,
+		currentUser: {}
 	}
 
 	componentDidMount() {
+		//CHECK USER AUTHENTICATION
+		axios
+			.get('http://localhost:8080/auth/check-auth', { withCredentials: true })
+			.then(res => {
+				this.setState({
+					isLoggedIn: true,
+					currentUser: res.data
+				})
+			})
+			.catch(err => {
+				this.setState({
+					isLoggedIn: false,
+					currentUser: {}
+				})
+			})
+		//GET POST DATA
 		axios
 			.get(`http://localhost:8080/api/posts/${this.props.match.params.id}`)
 			.then(res => {
@@ -66,6 +84,7 @@ class Post extends React.Component {
 				title={this.state.title}
 				postId={comment.post_id}
 				sub={this.state.sub}
+				subId={this.state.subId}
 				upvote={comment.upvote}
 				downvote={comment.downvote}
 				comment={comment.comment}
@@ -79,15 +98,20 @@ class Post extends React.Component {
 	//OPEN COMMENT FORM
 	buttonHandler = e => {
 		e.preventDefault();
-		if (!this.state.commentStatus) {
-			this.setState({
-				commentStatus: true
-			});
+		if (this.state.isLoggedIn) {
+			if (!this.state.commentStatus) {
+				this.setState({
+					commentStatus: true
+				});
+			}
+			else {
+				this.setState({
+					commentStatus: false
+				})
+			}
 		}
 		else {
-			this.setState({
-				commentStatus: false
-			})
+			window.alert('Please login to comment');
 		}
 	}
 	
@@ -102,10 +126,10 @@ class Post extends React.Component {
 					comment: this.state.userComment,
 					post_id: this.state.postId,
 					sub_id: this.state.subId,
-					user_id: 1
+					user_id: this.state.currentUser.id
 				})
 				.then(res => {
-					res.data.author = this.state.author;
+					res.data.author = this.state.currentUser.fName + ' ' + this.state.currentUser.lName;
 					this.setState({
 						comment: this.state.comment.concat(res.data)
 					})

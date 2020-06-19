@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Route, Switch, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faCaretDown, faUserPlus, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faCog, faCaretDown, faCaretUp, faUserPlus, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import Main from '../../pages/Main/Main';
 import Browse from '../../pages/Browse/Browse';
 import Profile from '../../pages/Profile/Profile';
@@ -14,9 +14,37 @@ import './Header.scss';
 
 class Header extends React.Component {
 	state = {
-		loggedIn: false,
+		isLoggedIn: false,
 		settingDropDown: false,
-		userProfile: {},
+		// search: '',
+		currentUser: {}
+		// allSubs: [],
+		// searchSubs: []
+	}
+
+	componentDidMount() {
+		//CHECK USER AUTHENTICATION
+		axios
+			.get('http://localhost:8080/auth/check-auth', { withCredentials: true })
+			.then(res => {
+				this.setState({
+					isLoggedIn: true,
+					currentUser: res.data
+				})
+			})
+			.catch(err => {
+				this.setState({
+					isLoggedIn: false,
+					currentUser: ''
+				})
+			})
+		axios
+			.get('http://localhost:8080/api/sub')
+			.then(res => {
+				this.setState({
+					allSubs: res.data
+				})
+			})
 	}
 
 	//CLICK HANDLER FOR DROP DOWN MENU
@@ -35,35 +63,64 @@ class Header extends React.Component {
 
 	//DROP DOWN MENU RENDER FUNCTION
 	renderDropDown = () => {
-		if (this.state.loggedIn === false) {
+		if (this.state.isLoggedIn === false) {
 			return (
 				<>
-					<Link className='header__droplink'>
-						<FontAwesomeIcon className='menuicon' icon={faUserPlus} />
-						<p>Sign Up</p>
-					</Link>
-					<Link className='header__droplink'>
+					<a href="http://localhost:8080/auth/" className='header__droplink'>
 						<FontAwesomeIcon className='menuicon' icon={faSignInAlt} />
-						<p>Log In</p>
-					</Link>
+						Log In
+					</a>
+
 				</>
 			)
 		}
 		else {
 			return (
 				<>
-					<Link className='header__droplink'>
-						<img src="" alt="" />
-						<p>My Profile</p>
+					<Link to={'/profile/' + this.state.currentUser.id} className='header__droplink'>
+						<FontAwesomeIcon className='menuicon' icon={faUser} />
+						My Profile
 					</Link>
-					<Link className='header__droplink'>
+					<a href='http://localhost:8080/auth/logout' className='header__droplink'>
 						<FontAwesomeIcon className='menuicon' icon={faSignOutAlt} />
-						<p>Log Out</p>
-					</Link>
+						Log Out
+					</a>
 				</>
 			)
 		}
 	}
+
+	// //SEARCH FOR SUBS DROP DOWN FUNCTION (ON CHANGE)
+	// searchSubs = e => {
+	// 	let searchValue = e.target.value;
+	// 	this.setState({
+	// 		search: searchValue
+	// 	}, () => {
+	// 		let filteredSubs = this.state.allSubs.filter(sub => {
+	// 			if (sub.name.includes(this.state.search)) {
+	// 				return sub
+	// 			}
+	// 			return null;
+	// 		})
+	// 		this.setState({
+	// 			searchSubs: filteredSubs
+	// 		})
+	// 	})
+	// }
+
+	// //RENDER SEARCHED SUBS DROP DOWN
+	// renderSearch = () => {
+	// 	// if (this.state.searchSubs.length < 5) {
+	// 		let mappedSubs = this.state.searchSubs.map(sub => {
+	// 			return (
+	// 				<Link to={'/sub/' + sub.id} className='header__drop-search'>
+	// 					/{sub.name}
+	// 				</Link>
+	// 			) 
+	// 		})
+	// 		return mappedSubs;
+	// 	// }
+	// }
 
 	render() {
 		return (
@@ -72,10 +129,18 @@ class Header extends React.Component {
 					<Link to='/'>
 						<img src={logo} alt="RES-ource" className="header__logo" />
 					</Link>
-					<input className='header__search' type="text" placeholder="Search" />
+					<input onChange={this.searchSubs} className='header__search' type="text" placeholder="Search" />
+					{/*this.state.searchSubs.length !== [] && this.state.search !== '' &&
+						<nav className='header__dropdown header__dropdown--search'>
+							{this.renderSearch()}
+						</nav>
+					*/}
 					<div className="header__settings" onClick={this.settingClickHandler}>
-						<FontAwesomeIcon className='userIcon' icon={faUser} />
-						<FontAwesomeIcon className='dropDownIcon' icon={faCaretDown} />
+						<FontAwesomeIcon className='userIcon' icon={faCog} />
+						{!this.state.settingDropDown ?
+							<FontAwesomeIcon className='dropDownIcon' icon={faCaretDown} /> :
+							<FontAwesomeIcon className='dropDownIcon' icon={faCaretUp} />
+						}
 					</div>
 					{this.state.settingDropDown===true &&
 						<nav className='header__dropdown'>

@@ -5,6 +5,10 @@
 	background-color: white;
 	border: 1px solid $vgrey;
 	margin-bottom: 0.5rem;
+	@include tablet {
+		max-width: 650px;
+		margin-top: 0.5rem;
+	}
 	&__banner {
 		border-bottom: 1px solid $vgrey;
 		height: 45px;
@@ -63,7 +67,6 @@
 		margin-bottom: 0.5rem;
 	}
 	&__conttext {
-		// font-weight: 500;
 		font-size: 0.8125rem;
 		width: 50%;
 	}

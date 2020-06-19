@@ -6,7 +6,10 @@ const User = bookshelf.model("User", {
   	return this.hasMany("Post");
   },
   postSubs: function() {
-  	return this.belongsToMany('Sub').through('Post')
+  	return this.belongsToMany('Sub').through('Post');
+  },
+  postComments: function() {
+    return this.hasMany('Comment').through('Post');
   },
   comments: function() {
   	return this.hasMany("Comment");
@@ -20,6 +23,7 @@ const User = bookshelf.model("User", {
   subscriptions: function() {
   	return this.belongsToMany('Sub').through('Subscription');
   }
+
 });
 
 module.exports = User;

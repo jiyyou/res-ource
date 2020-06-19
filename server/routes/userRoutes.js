@@ -34,10 +34,10 @@ router
 	//GET USER
 	.get((req, res) => {
 		User.where('id', req.params.id)
-			.fetchAll({ withRelated: ['posts', 'postSubs', 'comments', 'commentPosts', 'commentSubs','subscriptions']})
+			.fetchAll({ withRelated: ['posts', 'postSubs', 'postComments', 'comments', 'commentPosts', 'commentSubs','subscriptions']})
 			.then(user => {
 				res.status(200).json(user);
 			});
-	});
+	})
 
 module.exports = router;

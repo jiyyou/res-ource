@@ -15,10 +15,13 @@ class Profile extends React.Component {
 		comments: [],
 		commentCount: '',
 		upvotes: {},
-		downvotes: {}
+		downvotes: {},
+		isLoggedIn: false,
+		currentUser: {}
 	}
 
 	componentDidMount() {
+		
 		axios
 			.get(`http://localhost:8080/api/user/${this.props.match.params.id}`)
 			.then(res => {
@@ -33,6 +36,14 @@ class Profile extends React.Component {
 						return '';
 					})
 					post.sub = filteredSub[0];
+					//ADD COMMENT DATA TO POST
+					let filteredComments = res.data[0].postComments.filter(comment => {
+						if (post.id === comment.post_id) {
+							return comment;
+						}
+						return '';
+					})
+					post.commentCount = filteredComments.length;
 					//COUNTER FOR UPVOTE/DOWNVOTE OF POSTS IN EACH CONTRIBUTED SUB
 					!totalUpvote[`${post.sub.name}_${post.sub.id}`] ? totalUpvote[`${post.sub.name}_${post.sub.id}`] = post.upvote : totalUpvote[`${post.sub.name}_${post.sub.id}`] += post.upvote;
 					!totalDownvote[`${post.sub.name}_${post.sub.id}`] ? totalDownvote[`${post.sub.name}_${post.sub.id}`] = post.downvote : totalDownvote[`${post.sub.name}_${post.sub.id}`] -= post.downvote;
@@ -88,6 +99,7 @@ class Profile extends React.Component {
 				content={post.content}
 				upvote={post.upvote}
 				downvote={post.downvote}
+				commentCount={post.commentCount}
 				date={Date.parse(post.updated_at)}
 				key={uuidv4()} />
 		})
@@ -115,7 +127,7 @@ class Profile extends React.Component {
 
 	render() {
 		return (
-			<section>
+			<section className='profile'>
 				<ProfileCard
 					name={this.state.name}
 					description={this.state.description}

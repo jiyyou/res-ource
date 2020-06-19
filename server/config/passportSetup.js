@@ -7,14 +7,14 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 
 passport.serializeUser((user, done) => {
-	done(null, user.linkedInId);
+	done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
-	User.where('linkedInId', id)
+	User.where('id', id)
 		.fetch()
 		.then(user => {
-			done(null, user.linkedInId);		
+			done(null, user);		
 		});
 })
 
@@ -24,7 +24,7 @@ passport
 		clientID: CLIENT_ID,
 		clientSecret: CLIENT_SECRET,
 		callbackURL: '/auth/redirect'
-	}, (accressToken, refreshToken, profile, done) => {
+	}, (accessToken, refreshToken, profile, done) => {
 		//passport callback function
 		User.where('linkedInId', profile.id)
 			.fetch()
@@ -39,7 +39,6 @@ passport
 				})
 					.save()
 					.then(newUser => {
-						console.log(newUser);
 						done(null, newUser);
 					})
 			})
