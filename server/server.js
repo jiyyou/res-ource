@@ -9,9 +9,14 @@ const postsRoutes = require('./routes/postsRoutes');
 const subRoutes = require('./routes/subRoutes')
 const userRoutes = require('./routes/userRoutes');
 const passportSetup = require('./config/passportSetup');
+const fileupload = require('express-fileupload');
 
 require('dotenv').config();
 const port = process.env.PORT;
+
+app.use(fileupload({
+	useTempFiles: true
+}));
 
 app.use(cors({
 	origin: true,

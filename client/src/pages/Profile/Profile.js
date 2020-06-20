@@ -21,7 +21,6 @@ class Profile extends React.Component {
 	}
 
 	componentDidMount() {
-		
 		axios
 			.get(`http://localhost:8080/api/user/${this.props.match.params.id}`)
 			.then(res => {
@@ -84,6 +83,73 @@ class Profile extends React.Component {
 					downvotes: totalDownvote
 				})
 			})
+	}
+
+	componentDidUpdate(prevProps) {
+		if (prevProps.match.params.id !== this.props.match.params.id) {
+			axios
+			.get(`http://localhost:8080/api/user/${this.props.match.params.id}`)
+			.then(res => {
+				let totalUpvote = {};
+				let totalDownvote = {};
+				res.data[0].posts.map(post => {
+					//ADD SUB DATA TO POST
+					let filteredSub = res.data[0].postSubs.filter(sub => {
+						if (sub.id === post.sub_id) {
+							return sub;
+						}
+						return '';
+					})
+					post.sub = filteredSub[0];
+					//ADD COMMENT DATA TO POST
+					let filteredComments = res.data[0].postComments.filter(comment => {
+						if (post.id === comment.post_id) {
+							return comment;
+						}
+						return '';
+					})
+					post.commentCount = filteredComments.length;
+					//COUNTER FOR UPVOTE/DOWNVOTE OF POSTS IN EACH CONTRIBUTED SUB
+					!totalUpvote[`${post.sub.name}_${post.sub.id}`] ? totalUpvote[`${post.sub.name}_${post.sub.id}`] = post.upvote : totalUpvote[`${post.sub.name}_${post.sub.id}`] += post.upvote;
+					!totalDownvote[`${post.sub.name}_${post.sub.id}`] ? totalDownvote[`${post.sub.name}_${post.sub.id}`] = post.downvote : totalDownvote[`${post.sub.name}_${post.sub.id}`] -= post.downvote;
+					//=====================================================
+					return post;
+				})
+				res.data[0].comments.map(comment => {					
+					//ADD POST DATA TO COMMENT
+					let filteredPosts = res.data[0].commentPosts.filter(filteredPost => {
+						if (filteredPost.id === comment.post_id) {
+							return filteredPost;
+						}
+						return '';
+					})
+					//ADD SUB DATA TO COMMENT
+					let filteredSubs = res.data[0].commentSubs.filter(filteredSub => {
+						if (filteredSub.id === comment.sub_id) {
+							return filteredSub;
+						}
+						return '';
+					})
+					comment.post = filteredPosts[0];
+					comment.sub = filteredSubs[0];
+					// COUNTER FOR UPVOTE/DOWNVOTE OF COMMENTS IN EACH CONTRIBUTED SUB
+					!totalUpvote[`${comment.sub.name}_${comment.sub.id}`] ? totalUpvote[`${comment.sub.name}_${comment.sub.id}`] = comment.upvote : totalUpvote[`${comment.sub.name}_${comment.sub.id}`] += comment.upvote;
+					!totalDownvote[`${comment.sub.name}_${comment.sub.id}`] ? totalDownvote[`${comment.sub.name}_${comment.sub.id}`] = comment.downvote : totalDownvote[`${comment.sub.name}_${comment.sub.id}`] += comment.downvote;
+					// =========================================================
+					return comment;
+				})
+				this.setState({
+					name: res.data[0].fName + ' ' + res.data[0].lName,
+					description: res.data[0].description,
+					posts: res.data[0].posts,
+					postCount: res.data[0].posts.length,
+					comments: res.data[0].comments,
+					commentCount: res.data[0].comments.length,
+					upvotes: totalUpvote,
+					downvotes: totalDownvote
+				})
+			})
+		}
 	}
 	
 	//RENDER POST & COMMENT CARDS (SORT BY LATEST)

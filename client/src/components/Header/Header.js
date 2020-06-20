@@ -66,7 +66,7 @@ class Header extends React.Component {
 		if (this.state.isLoggedIn === false) {
 			return (
 				<>
-					<a href="http://localhost:8080/auth/" className='header__droplink'>
+					<a href="http://localhost:8080/auth/" onClick={this.settingClickHandler} className='header__droplink'>
 						<FontAwesomeIcon className='menuicon' icon={faSignInAlt} />
 						Log In
 					</a>
@@ -77,7 +77,7 @@ class Header extends React.Component {
 		else {
 			return (
 				<>
-					<Link to={'/profile/' + this.state.currentUser.id} className='header__droplink'>
+					<Link to={'/profile/' + this.state.currentUser.id} onClick={this.settingClickHandler} className='header__droplink'>
 						<FontAwesomeIcon className='menuicon' icon={faUser} />
 						My Profile
 					</Link>

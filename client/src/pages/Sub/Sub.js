@@ -113,7 +113,7 @@ class Sub extends React.Component {
 
 	//SUBMIT HANDLER FOR POST FORM
 	submitHandler = e => {
-		e.preventDefault();
+		e.preventDefault();		
 		this.setState({
 			postForm: {
 				postTitle: e.target.title.value,

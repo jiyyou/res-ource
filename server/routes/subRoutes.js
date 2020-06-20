@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Sub = require("../model/sub");
 const Post = require('../model/post');
+const Subscription = require('../model/subscription');
 
 router
 	.route('/')
@@ -24,6 +25,17 @@ router
 				res.status(201).json(newSub);
 			});
 	});
+
+router.post('/subscribe/:id',(req, res) => {
+	new Subscription({
+		sub_id: req.body.sub_id,
+		user_id: req.body.user_id
+	})
+		.save()
+		.then(subscription => {
+			res.status(201).json(subscription);
+		})
+})
 
 router
 	.route('/:id')

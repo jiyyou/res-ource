@@ -17,11 +17,17 @@ class Main extends React.Component{
 		axios
 			.get('http://localhost:8080/auth/check-auth', { withCredentials: true })
 			.then(res => {
+				axios
+					.get('http://localhost:8080/api/user/' + res.data.id)
+					.then(response => {
+						res.data.subscriptions = response.data[0].subscriptions;
+					})
 				this.setState({
 					isLoggedIn: true,
 					currentUser: res.data
 				})
 			})
+
 			.catch(err => {
 				this.setState({
 					isLoggedIn: false,
@@ -59,6 +65,7 @@ class Main extends React.Component{
 	}
 
 	render() {
+		console.log(this.state);
 		return (
 			<section className='main'>
 				<Link to='/sub'>

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Comment = require("../model/comment");
 const Post = require('../model/post');
+const Sub = require('../model/sub');
 
 router
 	.route('/')
@@ -26,5 +27,25 @@ router
 				res.status(201).json(newComment)
 			});
 	});
+
+//UPVOTE COMMENT
+router.put('/upvote/:id', (req, res) => {
+	Comment.query()
+		.where('id', req.params.id)
+		.increment('upvote', 1)
+		.then(comment => {
+			res.sendStatus(200).send(comment);
+		})
+})
+
+//DOWNVOTE COMMENT
+router.put('/downvote/:id', (req,res) => {
+	Comment.query()
+		.where('id', req.params.id)
+		.decrement('downvote', 1)
+		.then(comment => {
+			res.sendStatus(200).send(comment);
+		})		
+})
 
 module.exports = router;

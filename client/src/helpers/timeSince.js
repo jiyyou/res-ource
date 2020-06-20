@@ -5,7 +5,7 @@ const timeSince = postedDate => {    //postedDate would be .getTime() data previ
 		return `${Math.floor(passedTime)}s`; //if passedTime is within 1 minute
 	}
 	else if (passedTime >= 60 && passedTime < 3600) {
-		return `${Math.floor(passedTime/60)}minutes`; //if passedTime is within 1 hour
+		return `${Math.floor(passedTime/60)} minutes`; //if passedTime is within 1 hour
 	}
 	else if (passedTime >= 3600 && passedTime < 86400) {
 		return `${Math.floor(passedTime/3600)}h`; //if passedTime is within 1 day
@@ -17,7 +17,7 @@ const timeSince = postedDate => {    //postedDate would be .getTime() data previ
 		return `${Math.floor(passedTime/604800)}w`; //if passedTime is within 1 month
 	}
 	else if (passedTime >= 2419200 && passedTime < 29030400) {
-		return `${Math.floor(passedTime/2419200)}months`; //if passedTime is within 1 year
+		return `${Math.floor(passedTime/2419200)} months`; //if passedTime is within 1 year
 	}
 	else if (passedTime >= 29030400) {
 		return `${Math.floor(passedTime/29030400)}y`; //if passedTime is over 1year

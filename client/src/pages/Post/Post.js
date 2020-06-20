@@ -88,6 +88,7 @@ class Post extends React.Component {
 				upvote={comment.upvote}
 				downvote={comment.downvote}
 				comment={comment.comment}
+				commentId={comment.id}
 				date={Date.parse(comment.updated_at)}
 				key={uuidv4()} />
 		}).sort(function(a,b) {
