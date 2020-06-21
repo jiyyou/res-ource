@@ -1,0 +1,47 @@
+@import '../../partials/mixins';
+
+.about {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0.5rem;
+	& li {
+		font-size: 0.8125rem;
+	}
+	& ul {
+		margin-bottom: 1rem;
+	}
+	&__aboutbox {
+		background-color: white;
+		border: 1px solid $vgrey;
+		width: 100%;
+		max-width: 650px;
+		padding: 0.5rem;
+	}
+	&__title {
+		font-weight: 500;
+		font-size: 1.25rem;
+		margin-bottom: 0.5rem;
+	}
+	&__text {
+		font-size: 0.8125rem;
+		margin-bottom: 1rem;
+		&> span {
+			font-weight: 500;
+		}
+	}
+	&__contactbox {
+		display: flex;
+		align-items: center;
+	}
+	&__contact {
+		font-size: 0.8125rem;
+		&--link {
+			color: blue;
+		}
+	}
+	&__icon {
+		width: 1rem !important;
+		margin-right: 0.5rem;
+	}
+}

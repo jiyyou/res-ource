@@ -2,12 +2,13 @@ import React from 'react';
 import axios from 'axios';
 import { Route, Switch, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faCog, faCaretDown, faCaretUp, faUserPlus, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faQuestion, faCog, faCaretDown, faCaretUp, faUserPlus, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import Main from '../../pages/Main/Main';
 import Browse from '../../pages/Browse/Browse';
 import Profile from '../../pages/Profile/Profile';
 import Sub from '../../pages/Sub/Sub';
 import Post from '../../pages/Post/Post';
+import About from '../../pages/About/About';
 import logo from '../../assets/logo/RES-ource.png';
 import './Header.scss';
 
@@ -38,13 +39,13 @@ class Header extends React.Component {
 					currentUser: ''
 				})
 			})
-		axios
-			.get('http://localhost:8080/api/sub')
-			.then(res => {
-				this.setState({
-					allSubs: res.data
-				})
-			})
+		// axios
+		// 	.get('http://localhost:8080/api/sub')
+		// 	.then(res => {
+		// 		this.setState({
+		// 			allSubs: res.data
+		// 		})
+		// 	})
 	}
 
 	//CLICK HANDLER FOR DROP DOWN MENU
@@ -70,7 +71,10 @@ class Header extends React.Component {
 						<FontAwesomeIcon className='menuicon' icon={faSignInAlt} />
 						Log In
 					</a>
-
+					<Link to='/about' onClick={this.settingClickHandler} className='header__droplink'>
+						<FontAwesomeIcon className='menuicon' icon={faQuestion} />
+						About
+					</Link>
 				</>
 			)
 		}
@@ -80,6 +84,10 @@ class Header extends React.Component {
 					<Link to={'/profile/' + this.state.currentUser.id} onClick={this.settingClickHandler} className='header__droplink'>
 						<FontAwesomeIcon className='menuicon' icon={faUser} />
 						My Profile
+					</Link>
+					<Link to='/about' onClick={this.settingClickHandler} className='header__droplink'>
+						<FontAwesomeIcon className='menuicon' icon={faQuestion} />
+						About
 					</Link>
 					<a href='http://localhost:8080/auth/logout' className='header__droplink'>
 						<FontAwesomeIcon className='menuicon' icon={faSignOutAlt} />
@@ -153,7 +161,8 @@ class Header extends React.Component {
 	          <Route path="/sub" exact component={Browse} />
 	          <Route path="/sub/:id" component={Sub} />
 	          <Route path="/profile/:id" component={Profile} />
-	          <Route path='/post/:id' component={Post} />          
+	          <Route path='/post/:id' component={Post} />
+	          <Route path='/about' component={About} />        
 	        </Switch>
 			</>
 		)
