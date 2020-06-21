@@ -28,14 +28,7 @@ function SubCard(props) {
 					</Link>
 					<p className="subCard__membercount">{props.memberCount} members</p>
 				</div>
-				{/*props.currentUser.subscriptions.filter(sub => {
-					if (sub.id === props.subId) {
-						return sub
-					}
-				}).length === 1 ? 
-				<button onClick={buttonHandler} className='subCard__join'>+ JOIN</button> :
-				''
-				*/}
+				<button onClick={buttonHandler} className='subCard__join'>+ JOIN</button>
 				<Link to={'/sub/' + props.subId}>
 					<p className="subCard__description">{props.description}</p>
 				</Link>				
