@@ -18,6 +18,9 @@
 	}
 	&__sub {
 		font-size: 0.8125rem;
+		&:hover{
+			color: $vdarkblue;
+		}
 	}
 	&__votebox {
 		margin-left: auto;

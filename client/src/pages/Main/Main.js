@@ -65,7 +65,6 @@ class Main extends React.Component{
 	}
 
 	render() {
-		console.log(this.state);
 		return (
 			<section className='main'>
 				<Link to='/sub'>

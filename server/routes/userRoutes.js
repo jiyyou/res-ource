@@ -39,5 +39,15 @@ router
 				res.status(200).json(user);
 			});
 	})
+	//EDIT DESCRIPTION
+	.put((req, res) => {
+		User.where('id', req.params.id)
+			.save({
+				description: req.body.description
+			}, { method: 'update'})
+			.then(user => {
+				res.status(200).send(user)
+			})
+	})
 
 module.exports = router;

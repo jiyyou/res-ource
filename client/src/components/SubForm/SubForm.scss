@@ -1,0 +1,50 @@
+@import '../../partials/mixins';
+
+.subForm {
+	background-color: white;
+	border: 1px solid $vgrey;
+	border-radius: 4px;
+	margin-bottom: 0.5rem;
+	padding: 0.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	&__label {
+		font-size: 0.8125rem;
+		width: 100%;
+		color: $vsilver;
+	}
+	&__input {
+		width: 100%;
+		border: 1px solid $vgrey;
+		border-radius: 4px;
+		height: 2rem;
+		padding: 0.5rem;
+		margin-bottom: 0.5rem;
+	}
+	&__txtarea {
+		width: 100%;
+		height: 4rem;
+		border: 1px solid $vgrey;
+		border-radius: 4px;
+		margin-bottom: 0.5rem;
+		padding: 0.5rem;
+	}
+	&__button {
+		border: 1px solid $vlightblue;
+		border-radius: 4px;
+		background-color: white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: $vlightblue;
+		font-weight: 500;
+		width: 60px;
+		height: 30px;
+		&:hover {
+			border: none;
+			background-color: $vdarkblue;
+			color: white;
+		}
+	}
+}

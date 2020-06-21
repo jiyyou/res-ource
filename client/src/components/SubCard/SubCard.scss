@@ -33,6 +33,9 @@
 	&__title {
 		font-size: 1rem;
 		font-weight: 500;
+		&:hover{
+			color: $vdarkblue;
+		}
 	}
 	&__membercount {
 		color: $vsilver;
@@ -53,5 +56,8 @@
 		margin-top: 0.75rem;
 		width: 100%;
 		font-size: 0.875rem;
+		&:hover{
+			color: $vdarkblue;
+		}
 	}
 }

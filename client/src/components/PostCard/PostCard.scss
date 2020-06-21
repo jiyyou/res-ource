@@ -26,6 +26,9 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 		margin-bottom: 0.2rem;
+		&:hover{
+			color: $vdarkblue;
+		}
 	}
 	&__link {
 		width: 100%;
@@ -40,16 +43,25 @@
 		font-weight: 500;
 		font-size: 0.8125rem;
 		margin-right: 0.5rem;
+		&:hover{
+			color: $vdarkblue;
+		}
 	}
 	&__info {
 		margin-left: auto;
 		color: $vsilver;
 		font-size: 0.8125rem;
+		&:hover{
+			color: $vdarkblue;
+		}
 	}
 	&__content {
 		padding: 0.25rem 0.5rem;
 		border-bottom: 1px solid $vgrey;
 		font-size: 0.875rem;
+		&:hover{
+			color: $vdarkblue;
+		}
 	}
 	&__footer {
 		padding: 0.25rem 0.5rem;

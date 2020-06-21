@@ -20,14 +20,23 @@
 	}
 	&__user {
 		font-style: italic;
+		&:hover{
+			color: $vdarkblue;
+		}
 	}
 	&__title {
 		font-style: italic;
+		&:hover{
+			color: $vdarkblue;
+		}
 	}
 	&__sub {
 		font-size: 0.8125rem;
 		font-weight: 500;
 		margin-right: auto;
+		&:hover{
+			color: $vdarkblue;
+		}	
 	}
 	&__text {
 		font-size: 0.8125rem;

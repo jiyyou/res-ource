@@ -9,6 +9,7 @@ import './Profile.scss';
 class Profile extends React.Component {
 	state = {
 		name: '',
+		userId: '',
 		description: '',
 		posts: [],
 		postCount: '',
@@ -17,10 +18,27 @@ class Profile extends React.Component {
 		upvotes: {},
 		downvotes: {},
 		isLoggedIn: false,
-		currentUser: {}
+		currentUser: {},
+		editToggle: false
 	}
 
 	componentDidMount() {
+		//CHECK USER AUTHENTICATION
+		axios
+			.get('http://localhost:8080/auth/check-auth', { withCredentials: true })
+			.then(res => {
+				this.setState({
+					isLoggedIn: true,
+					currentUser: res.data
+				})
+			})
+			.catch(err => {
+				this.setState({
+					isLoggedIn: false,
+					currentUser: {}
+				})
+			})
+		//GET USER INFO
 		axios
 			.get(`http://localhost:8080/api/user/${this.props.match.params.id}`)
 			.then(res => {
@@ -74,6 +92,7 @@ class Profile extends React.Component {
 				})
 				this.setState({
 					name: res.data[0].fName + ' ' + res.data[0].lName,
+					userId: res.data[0].id,
 					description: res.data[0].description,
 					posts: res.data[0].posts,
 					postCount: res.data[0].posts.length,
@@ -140,6 +159,7 @@ class Profile extends React.Component {
 				})
 				this.setState({
 					name: res.data[0].fName + ' ' + res.data[0].lName,
+					userId: res.data[0].id,
 					description: res.data[0].description,
 					posts: res.data[0].posts,
 					postCount: res.data[0].posts.length,
@@ -190,19 +210,62 @@ class Profile extends React.Component {
 		return renderedCards;
 	}
 
+	//SUBMIT HANDLER FOR EDIT PROFILE DESCRIPTION
+	submitHandler = e => {
+		e.preventDefault();
+		this.setState({
+			description: e.target.description.value
+		}, () => {
+			axios
+				.put(`http://localhost:8080/api/user/${this.state.userId}`, {
+					description: this.state.description
+				})
+				.then(res => {
+					console.log('Success')
+					this.setState({
+						editToggle: false
+					})
+				})
+				.catch(err => {
+					window.alert(err);
+				})
+
+		})
+	}
+
+	//TOGGLE EDIT FORM 
+	toggleEdit = (e) => {
+		e.preventDefault();
+		if (this.state.editToggle) {
+			this.setState({
+				editToggle: false
+			})
+		}
+		else {
+			this.setState({
+				editToggle: true
+			})
+		}
+	}
+
 
 	render() {
 		return (
 			<section className='profile'>
 				<ProfileCard
 					name={this.state.name}
+					userId={this.state.userId}
 					description={this.state.description}
 					posts={this.state.posts}
 					comments={this.state.comments}
 					postCount={this.state.postCount}
 					commentCount={this.state.commentCount}
 					upvotes={this.state.upvotes}
-					downvotes={this.state.downvotes} />
+					downvotes={this.state.downvotes}
+					currentUser={this.state.currentUser}
+					submitHandler={this.submitHandler}
+					toggleEdit={this.toggleEdit}
+					editToggle={this.state.editToggle} />
 				<ul className='profile__list'>
 					{this.renderCards()}
 				</ul>
