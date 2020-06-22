@@ -198,6 +198,7 @@ class Profile extends React.Component {
 				sub={comment.sub.name}
 				subId={comment.sub.id}
 				comment={comment.comment}
+				commentId={comment.id}
 				upvote={comment.upvote}
 				downvote={comment.downvote}
 				date={Date.parse(comment.updated_at)}

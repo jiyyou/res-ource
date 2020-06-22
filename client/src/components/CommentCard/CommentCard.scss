@@ -49,6 +49,11 @@
 	&__icon {
 		width: 12px !important;
 		margin: 0 0.1rem 0 0.3rem;
+		&>path {
+			&:hover {
+				color: $vdarkblue;
+			}
+		}
 	}
 	&__comment {
 		padding: 0.25rem 0.5rem;

@@ -6,54 +6,70 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleUp, faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons';
 import timeSince from '../../helpers/timeSince';
 
-function CommentCard(props) {
+class CommentCard extends React.Component {
+	state = {
+		upvote: '',
+		downvote: ''
+	}
 
-	const upvoteHandler = () => {
+	componentDidMount() {
+		this.setState({
+			upvote: this.props.upvote,
+			downvote: this.props.downvote
+		})
+	}
+
+	upvoteHandler = () => {
 		axios
-			.put(`http://localhost:8080/api/comments/upvote/${props.commentId}`)
-			.then(res => {
-				console.log(res);
+			.put(`http://localhost:8080/api/comments/upvote/${this.props.commentId}`)
+			.then(() => {
+				this.setState({
+					upvote: this.state.upvote + 1
+				})
 			})
 			.catch(err => {
-				console.log(err);
+				window.alert(err);
 			})
 	}
 
-	const downvoteHandler = () => {
+	downvoteHandler = () => {
 		axios
-			.put(`http://localhost:8080/api/comments/downvote/${props.commentId}`)
-			.then(res => {
-				console.log(res);
+			.put(`http://localhost:8080/api/comments/downvote/${this.props.commentId}`)
+			.then(() => {
+				this.setState({
+					downvote: this.state.downvote - 1
+				})
 			})
 			.catch(err => {
-				console.log(err);
+				window.alert(err);
 			})
 	}	
 
-	return (
-		<div className="commentCard">
-			<div className="commentCard__header">
-				<p className="commentCard__desc">
-					<Link to={'/profile/' + props.userId}>
-						<span className="commentCard__user">{props.author + ' '}</span>
+	render() {
+		return (
+			<div className="commentCard">
+				<div className="commentCard__header">
+					<p className="commentCard__desc">
+						<Link to={'/profile/' + this.props.userId}>
+							<span className="commentCard__user">{this.props.author + ' '}</span>
+						</Link>
+						commented on
+						<Link to={'/post/' + this.props.postId}>
+							<span className="commentCard__title">{' ' + this.props.title}</span>
+						</Link>
+					</p>
+					<Link to={'/sub/' + this.props.subId}>
+						<h3 className="commentCard__sub">/{this.props.sub}</h3>
 					</Link>
-					commented on
-					<Link to={'/post/' + props.postId}>
-						<span className="commentCard__title">{' ' + props.title}</span>
-					</Link>
-				</p>
-				<Link to={'/sub/' + props.subId}>
-					<h3 className="commentCard__sub">/{props.sub}</h3>
-				</Link>
-				<p className="commentCard__text commentCard__text--time">{timeSince(props.date)}</p>
-				<FontAwesomeIcon onClick={upvoteHandler} className='commentCard__icon' icon={faArrowAltCircleUp} />
-				<p className="commentCard__text">{props.upvote}</p>
-				<FontAwesomeIcon onClick={downvoteHandler} className='commentCard__icon' icon={faArrowAltCircleDown} />
-				<p className="commentCard__text">{props.downvote}</p>
+					<p className="commentCard__text commentCard__text--time">{timeSince(this.props.date)}</p>
+					<FontAwesomeIcon onClick={this.upvoteHandler} className='commentCard__icon' icon={faArrowAltCircleUp} />
+					<p className="commentCard__text">{this.state.upvote}</p>
+					<FontAwesomeIcon onClick={this.downvoteHandler} className='commentCard__icon' icon={faArrowAltCircleDown} />
+					<p className="commentCard__text">{this.state.downvote}</p>
+				</div>
+				<p className="commentCard__comment">{this.props.comment}</p>
 			</div>
-			<p className="commentCard__comment">{props.comment}</p>
-		</div>
-	)
+		)
+	}
 }
-
 export default CommentCard;

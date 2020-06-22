@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Comment = require("../model/comment");
 const Post = require('../model/post');
-const PostVote = require('../model/postVote');
 
 require('dotenv').config();
 const port = process.env.PORT;
@@ -40,7 +39,7 @@ router.put('/upvote/:id', (req, res) => {
 		.where('id', req.params.id)
 		.increment('upvote', 1)
 		.then(post => {
-			res.status(200).send(post);
+			res.status(200).send('success');
 		})
 })
 
@@ -50,17 +49,8 @@ router.put('/downvote/:id', (req,res) => {
 		.where('id', req.params.id)
 		.decrement('downvote', 1)
 		.then(post => {
-			res.status(200).send(post);
-		})		
-})
-
-router.put('/upvote/:id', (req, res) => {
-	Post.query()
-		.where('id', req.params.id)
-		.increment('upvote', 1)
-		.then(post => {
 			res.status(200).send('success');
-		})	
+		})		
 })
 
 router

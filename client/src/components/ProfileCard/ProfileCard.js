@@ -69,9 +69,7 @@ class ProfileCard extends React.Component {
 					<p className="profileCard__vote">{this.sumOfVotes(this.props.upvotes)}</p>
 					<FontAwesomeIcon className='profileCard__icon' icon={faArrowAltCircleDown} />
 					<p className="profileCard__vote">{this.sumOfVotes(this.props.downvotes)}</p>
-					<div className="profileCard__linkedin">
-						<FontAwesomeIcon className='profileCard__icon' icon={faLinkedin} />
-					</div>
+
 				</div>
 
 			</div>
