@@ -71,6 +71,42 @@ class Sub extends React.Component {
 		})
 	}
 
+	componentDidUpdate(prevProps) {
+		if (prevProps.match.params.id !== this.props.match.params.id) {
+			axios
+				.get(`http://localhost:8080/api/sub/${this.props.match.params.id}`)
+				.then(res => {
+					res.data[0].posts.map(post => {
+						let filteredUser = res.data[0].postUsers.filter(user => {
+							if (user.id === post.user_id) {
+								return user;
+							}
+							return '';
+						})
+						let filteredComments = res.data[0].postComments.filter(comment => {
+							if (comment.post_id === post.id) {
+								return comment;
+							}
+							return '';
+						})
+						post.author = filteredUser[0].fName + ' ' + filteredUser[0].lName;
+						post.commentCount = filteredComments.length;
+						return post;
+					})
+					this.setState({
+						name: res.data[0].name,
+						subId: res.data[0].id,
+						description: res.data[0].description,
+						memberCount: res.data[0].memberCount,
+						posts: res.data[0].posts
+					})
+				})
+			.catch(err => {
+				window.alert(err);
+			})
+		}
+	}
+
 	//CREATE POST LIST (SORT BY LATEST)
 	renderPosts = () => {
 		return this.state.posts.map(post => {

@@ -17,10 +17,10 @@ class Header extends React.Component {
 	state = {
 		isLoggedIn: false,
 		settingDropDown: false,
-		// search: '',
-		currentUser: {}
-		// allSubs: [],
-		// searchSubs: []
+		search: '',
+		currentUser: {},
+		allSubs: [],
+		searchSubs: []
 	}
 
 	componentDidMount() {
@@ -39,13 +39,13 @@ class Header extends React.Component {
 					currentUser: ''
 				})
 			})
-		// axios
-		// 	.get('http://localhost:8080/api/sub')
-		// 	.then(res => {
-		// 		this.setState({
-		// 			allSubs: res.data
-		// 		})
-		// 	})
+		axios
+			.get('http://localhost:8080/api/sub')
+			.then(res => {
+				this.setState({
+					allSubs: res.data
+				})
+			})
 	}
 
 	//CLICK HANDLER FOR DROP DOWN MENU
@@ -98,37 +98,44 @@ class Header extends React.Component {
 		}
 	}
 
-	// //SEARCH FOR SUBS DROP DOWN FUNCTION (ON CHANGE)
-	// searchSubs = e => {
-	// 	let searchValue = e.target.value;
-	// 	this.setState({
-	// 		search: searchValue
-	// 	}, () => {
-	// 		let filteredSubs = this.state.allSubs.filter(sub => {
-	// 			if (sub.name.includes(this.state.search)) {
-	// 				return sub
-	// 			}
-	// 			return null;
-	// 		})
-	// 		this.setState({
-	// 			searchSubs: filteredSubs
-	// 		})
-	// 	})
-	// }
+	//SEARCH FOR SUBS DROP DOWN FUNCTION (ON CHANGE)
+	searchSubs = e => {
+		let searchValue = e.target.value;
+		this.setState({
+			search: searchValue
+		}, () => {
+			let filteredSubs = this.state.allSubs.filter(sub => {
+				if (sub.name.toLowerCase().includes(this.state.search.toLowerCase())) {
+					return sub
+				}
+				return null;
+			})
+			this.setState({
+				searchSubs: filteredSubs
+			})
+		})
+	}
 
-	// //RENDER SEARCHED SUBS DROP DOWN
-	// renderSearch = () => {
-	// 	// if (this.state.searchSubs.length < 5) {
-	// 		let mappedSubs = this.state.searchSubs.map(sub => {
-	// 			return (
-	// 				<Link to={'/sub/' + sub.id} className='header__drop-search'>
-	// 					/{sub.name}
-	// 				</Link>
-	// 			) 
-	// 		})
-	// 		return mappedSubs;
-	// 	// }
-	// }
+	//CLICK HANDLER FOR DROP DOWN SEARCH
+	clearSearch = () => {
+		this.setState({
+			search: ''
+		})
+	}
+
+	//RENDER SEARCHED SUBS DROP DOWN
+	renderSearch = () => {
+			let mappedSubs = this.state.searchSubs.map(sub => {
+				return (
+					<Link to={'/sub/' + sub.id} onClick={this.clearSearch} className='header__drop-search'>
+						/{sub.name}
+					</Link>
+				) 
+			})
+			return mappedSubs;
+	}
+
+
 
 	render() {
 		return (
@@ -138,11 +145,11 @@ class Header extends React.Component {
 						<img src={logo} alt="RES-ource" className="header__logo" />
 					</Link>
 					<input onChange={this.searchSubs} className='header__search' type="text" placeholder="Search" />
-					{/*this.state.searchSubs.length !== [] && this.state.search !== '' &&
+					{this.state.searchSubs !== [] && this.state.search !== '' &&
 						<nav className='header__dropdown header__dropdown--search'>
 							{this.renderSearch()}
 						</nav>
-					*/}
+					}
 					<div className="header__settings" onClick={this.settingClickHandler}>
 						<FontAwesomeIcon className='userIcon' icon={faCog} />
 						{!this.state.settingDropDown ?
