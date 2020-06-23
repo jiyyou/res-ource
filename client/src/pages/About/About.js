@@ -10,7 +10,7 @@ function About() {
 			<div className='about__aboutbox'>
 				<h2 className='about__title'>What is RES-ource</h2>
 				<p className='about__text'>
-					RES-ource (Responsible Resource) is a social platform where user's are able to share information and content. To make any contributions or inquiries, all users must log-in with their LinkedIn account to verify their identity. The idea behind this requirement is that as everyone's identity is public, user's will be more careful in posting and sharing content as it will damage their credibility. 
+					RES-ource (Responsible Resource) is a social platform where users are able to share information and content. To make any contributions or inquiries, all users must log-in with their LinkedIn account to verify their identity. The idea behind this requirement is that as everyone's identity is public, users will be more careful in posting and sharing content as it will damage their credibility. 
 				</p>
 				<p className='about__text'>
 					Users looking for information also have the power to choose which resources they place their trust in as they can check the credibility of other users. By visiting any user's profile page, users are able to get a breakdown of their contributions in each sub and how many upvotes and downvotes they have in each sub.
@@ -23,8 +23,6 @@ function About() {
 
 				<h2 className='about__title'>In the works..</h2>
 				<ul>
-					<li>- Upvote and downvote posts/comments.</li>
-					<li>- Search for subs through header search.</li>
 					<li>- Follow/subscribe particular users and subs.</li>
 					<li>- Ability to post images and videos.</li>
 					<li>- Change avatar picture for users and subs.</li>

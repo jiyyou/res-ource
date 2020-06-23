@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Route, Switch, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faQuestion, faCog, faCaretDown, faCaretUp, faUserPlus, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faQuestion, faCog, faCaretDown, faCaretUp, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import Main from '../../pages/Main/Main';
 import Browse from '../../pages/Browse/Browse';
 import Profile from '../../pages/Profile/Profile';

@@ -7,6 +7,9 @@
 	padding: 0.5rem;
 	& li {
 		font-size: 0.8125rem;
+		@include tablet {
+			font-size: 0.9375rem;
+		}
 	}
 	& ul {
 		margin-bottom: 1rem;
@@ -22,10 +25,16 @@
 		font-weight: 500;
 		font-size: 1.25rem;
 		margin-bottom: 0.5rem;
+		@include tablet {
+			font-size: 1.5rem;
+		}
 	}
 	&__text {
 		font-size: 0.8125rem;
 		margin-bottom: 1rem;
+		@include tablet {
+			font-size: 0.9375rem;
+		}
 		&> span {
 			font-weight: 500;
 		}
@@ -36,6 +45,9 @@
 	}
 	&__contact {
 		font-size: 0.8125rem;
+		@include tablet {
+			font-size: 0.9375rem;
+		}
 		&--link {
 			color: blue;
 		}
