@@ -70,7 +70,7 @@ class Header extends React.Component {
 		if (this.state.isLoggedIn === false) {
 			return (
 				<>
-					<a href="http://localhost:8080/auth/" onClick={this.settingClickHandler} className='header__droplink'>
+					<a href={`${API_URL}/auth/`} onClick={this.settingClickHandler} className='header__droplink'>
 						<FontAwesomeIcon className='menuicon' icon={faSignInAlt} />
 						Log In
 					</a>
@@ -92,7 +92,7 @@ class Header extends React.Component {
 						<FontAwesomeIcon className='menuicon' icon={faQuestion} />
 						About
 					</Link>
-					<a href='http://localhost:8080/auth/logout' className='header__droplink'>
+					<a href={`${API_URL}/auth/logout`} className='header__droplink'>
 						<FontAwesomeIcon className='menuicon' icon={faSignOutAlt} />
 						Log Out
 					</a>
