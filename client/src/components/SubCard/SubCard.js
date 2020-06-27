@@ -4,11 +4,15 @@ import { Link } from "react-router-dom";
 import './SubCard.scss';
 import logo from '../../assets/logo/RES-ource2.png';
 
+const API_URL = process.env.NODE_ENV === "production" ?
+	'https://res-ource.herokuapp.com' :
+	'http://localhost:8080';
+
 function SubCard(props) {
 	//BUTTON HANDLER FOR SUBSCRIBE
 	const buttonHandler = () => {
 		axios
-			.post(`http://localhost:8080/api/sub/subscribe/${props.subId}/`, {
+			.post(`${API_URL}/api/sub/subscribe/${props.subId}/`, {
 				sub_id: props.subId,
 				user_id: props.currentUser.id
 			})

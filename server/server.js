@@ -9,6 +9,8 @@ const postsRoutes = require('./routes/postsRoutes');
 const subRoutes = require('./routes/subRoutes')
 const userRoutes = require('./routes/userRoutes');
 const passportSetup = require('./config/passportSetup');
+const mysql = require('mysql');
+const knex = require('./knexfile');
 
 require('dotenv').config();
 const port = process.env.PORT;
@@ -36,4 +38,24 @@ app.use('/api/posts', postsRoutes);
 app.use('/api/sub', subRoutes);
 app.use('/api/user', userRoutes);
 
+let connection;
+if (process.env.JAWSDB_URL) {
+	connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+	connection = mysql.createConnection(knex.development);
+}
+
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('../client/build'))
+	app.get('*', (req, res) => {
+		res.sendFile(path.join(__dirname, '../client', 'build', 'index.html'));
+	})
+}
+
 app.listen(port, () => console.log(`listening on http://localhost:${port}`));
+
+connection.connect(err => {
+	console.log('connected as id ' + connection.threadId);
+});
+
+module.exports = connection;

@@ -12,6 +12,9 @@ import About from '../../pages/About/About';
 import logo from '../../assets/logo/RES-ource.png';
 import './Header.scss';
 
+const API_URL = process.env.NODE_ENV === "production" ?
+	'https://res-ource.herokuapp.com' :
+	'http://localhost:8080';
 
 class Header extends React.Component {
 	state = {
@@ -26,7 +29,7 @@ class Header extends React.Component {
 	componentDidMount() {
 		//CHECK USER AUTHENTICATION
 		axios
-			.get('http://localhost:8080/auth/check-auth', { withCredentials: true })
+			.get(`${API_URL}/auth/check-auth`, { withCredentials: true })
 			.then(res => {
 				this.setState({
 					isLoggedIn: true,
@@ -40,7 +43,7 @@ class Header extends React.Component {
 				})
 			})
 		axios
-			.get('http://localhost:8080/api/sub')
+			.get(`${API_URL}/api/sub`)
 			.then(res => {
 				this.setState({
 					allSubs: res.data

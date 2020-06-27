@@ -5,6 +5,10 @@ import PostForm from '../../components/PostForm/PostForm';
 import logo from '../../assets/logo/RES-ource2.png';
 import './Sub.scss';
 
+const API_URL = process.env.NODE_ENV === "production" ?
+	'https://res-ource.herokuapp.com' :
+	'http://localhost:8080';
+
 class Sub extends React.Component {
 	state = {
 		name: '',
@@ -25,7 +29,7 @@ class Sub extends React.Component {
 	componentDidMount() {
 		//CHECK USER AUTHENTICATION
 		axios
-			.get('http://localhost:8080/auth/check-auth', { withCredentials: true })
+			.get(`${API_URL}/auth/check-auth`, { withCredentials: true })
 			.then(res => {
 				this.setState({
 					isLoggedIn: true,
@@ -39,7 +43,7 @@ class Sub extends React.Component {
 				})
 			})
 		axios
-			.get(`http://localhost:8080/api/sub/${this.props.match.params.id}`)
+			.get(`${API_URL}/api/sub/${this.props.match.params.id}`)
 			.then(res => {
 				res.data[0].posts.map(post => {
 					let filteredUser = res.data[0].postUsers.filter(user => {
@@ -74,7 +78,7 @@ class Sub extends React.Component {
 	componentDidUpdate(prevProps) {
 		if (prevProps.match.params.id !== this.props.match.params.id) {
 			axios
-				.get(`http://localhost:8080/api/sub/${this.props.match.params.id}`)
+				.get(`${API_URL}/api/sub/${this.props.match.params.id}`)
 				.then(res => {
 					res.data[0].posts.map(post => {
 						let filteredUser = res.data[0].postUsers.filter(user => {
@@ -157,7 +161,7 @@ class Sub extends React.Component {
 			}
 		}, () => {
 			axios
-				.post('http://localhost:8080/api/posts/', {
+				.post(`${API_URL}/api/posts/`, {
 					title: this.state.postForm.postTitle,
 					content: this.state.postForm.postContent,
 					sub_id: this.state.subId,

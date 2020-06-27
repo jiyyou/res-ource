@@ -6,6 +6,10 @@ import PostCard from '../../components/PostCard/PostCard';
 import CommentCard from '../../components/CommentCard/CommentCard';
 import './Profile.scss';
 
+const API_URL = process.env.NODE_ENV === "production" ?
+	'https://res-ource.herokuapp.com' :
+	'http://localhost:8080';
+
 class Profile extends React.Component {
 	state = {
 		name: '',
@@ -25,7 +29,7 @@ class Profile extends React.Component {
 	componentDidMount() {
 		//CHECK USER AUTHENTICATION
 		axios
-			.get('http://localhost:8080/auth/check-auth', { withCredentials: true })
+			.get(`${API_URL}/auth/check-auth`, { withCredentials: true })
 			.then(res => {
 				this.setState({
 					isLoggedIn: true,
@@ -40,7 +44,7 @@ class Profile extends React.Component {
 			})
 		//GET USER INFO
 		axios
-			.get(`http://localhost:8080/api/user/${this.props.match.params.id}`)
+			.get(`${API_URL}/api/user/${this.props.match.params.id}`)
 			.then(res => {
 				let totalUpvote = {};
 				let totalDownvote = {};
@@ -107,7 +111,7 @@ class Profile extends React.Component {
 	componentDidUpdate(prevProps) {
 		if (prevProps.match.params.id !== this.props.match.params.id) {
 			axios
-			.get(`http://localhost:8080/api/user/${this.props.match.params.id}`)
+			.get(`${API_URL}/api/user/${this.props.match.params.id}`)
 			.then(res => {
 				let totalUpvote = {};
 				let totalDownvote = {};
@@ -218,7 +222,7 @@ class Profile extends React.Component {
 			description: e.target.description.value
 		}, () => {
 			axios
-				.put(`http://localhost:8080/api/user/${this.state.userId}`, {
+				.put(`${API_URL}/api/user/${this.state.userId}`, {
 					description: this.state.description
 				})
 				.then(res => {

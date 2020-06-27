@@ -5,6 +5,10 @@ import './Browse.scss';
 import SubCard from '../../components/SubCard/SubCard';
 import SubForm from '../../components/SubForm/SubForm';
 
+const API_URL = process.env.NODE_ENV === "production" ?
+	'https://res-ource.herokuapp.com' :
+	'http://localhost:8080';
+
 class Browse extends React.Component{
 	state = {
 		subList: [],
@@ -15,7 +19,7 @@ class Browse extends React.Component{
 
 	componentDidMount() {
 		axios
-			.get('http://localhost:8080/auth/check-auth', { withCredentials: true })
+			.get(`${API_URL}/auth/check-auth`, { withCredentials: true })
 			.then(res => {
 				this.setState({
 					isLoggedIn: true,
@@ -29,7 +33,7 @@ class Browse extends React.Component{
 				})
 			})
 		axios
-			.get('http://localhost:8080/api/sub/')
+			.get(`${API_URL}/api/sub/`)
 			.then(res => {
 				this.setState({
 					subList: res.data
@@ -79,7 +83,7 @@ class Browse extends React.Component{
 			}
 		}, () => {
 			axios
-				.post('http://localhost:8080/api/sub/', {
+				.post(`${API_URL}/api/sub/`, {
 					name: this.state.newSub.name,
 					description: this.state.newSub.description
 				})

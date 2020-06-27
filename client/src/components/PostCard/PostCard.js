@@ -7,6 +7,10 @@ import './PostCard.scss';
 import logo from '../../assets/logo/RES-ource2.png';
 import timeSince from '../../helpers/timeSince';
 
+const API_URL = process.env.NODE_ENV === "production" ?
+	'https://res-ource.herokuapp.com' :
+	'http://localhost:8080';
+
 class PostCard extends React.Component {
 	state = {
 		upvote: '',
@@ -31,7 +35,7 @@ class PostCard extends React.Component {
 
 	upvoteHandler = () => {
 		axios
-			.put(`http://localhost:8080/api/posts/upvote/${this.props.postId}`)
+			.put(`${API_URL}/api/posts/upvote/${this.props.postId}`)
 			.then(() => {
 				this.setState({
 					upvote: this.state.upvote + 1
@@ -44,7 +48,7 @@ class PostCard extends React.Component {
 
 	downvoteHandler = () => {
 		axios
-			.put(`http://localhost:8080/api/posts/downvote/${this.props.postId}`)
+			.put(`${API_URL}/api/posts/downvote/${this.props.postId}`)
 			.then(() => {
 				this.setState({
 					downvote: this.state.downvote - 1

@@ -6,6 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleUp, faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons';
 import timeSince from '../../helpers/timeSince';
 
+const API_URL = process.env.NODE_ENV === "production" ?
+	'https://res-ource.herokuapp.com' :
+	'http://localhost:8080';
+
 class CommentCard extends React.Component {
 	state = {
 		upvote: '',
@@ -21,7 +25,7 @@ class CommentCard extends React.Component {
 
 	upvoteHandler = () => {
 		axios
-			.put(`http://localhost:8080/api/comments/upvote/${this.props.commentId}`)
+			.put(`${API_URL}/api/comments/upvote/${this.props.commentId}`)
 			.then(() => {
 				this.setState({
 					upvote: this.state.upvote + 1
@@ -34,7 +38,7 @@ class CommentCard extends React.Component {
 
 	downvoteHandler = () => {
 		axios
-			.put(`http://localhost:8080/api/comments/downvote/${this.props.commentId}`)
+			.put(`${API_URL}/api/comments/downvote/${this.props.commentId}`)
 			.then(() => {
 				this.setState({
 					downvote: this.state.downvote - 1

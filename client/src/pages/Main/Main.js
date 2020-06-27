@@ -5,6 +5,10 @@ import { v4 as uuidv4 } from 'uuid';
 import './Main.scss';
 import PostCard from '../../components/PostCard/PostCard';
 
+const API_URL = process.env.NODE_ENV === "production" ?
+	'https://res-ource.herokuapp.com' :
+	'http://localhost:8080';
+
 class Main extends React.Component{
 	state = {
 		postList: [],
@@ -15,10 +19,10 @@ class Main extends React.Component{
 	componentDidMount() {
 		//CHECK IF USER IS LOGGED IN
 		axios
-			.get('http://localhost:8080/auth/check-auth', { withCredentials: true })
+			.get(`${API_URL}/auth/check-auth`, { withCredentials: true })
 			.then(res => {
 				axios
-					.get('http://localhost:8080/api/user/' + res.data.id)
+					.get(`${API_URL}/api/user/` + res.data.id)
 					.then(response => {
 						res.data.subscriptions = response.data[0].subscriptions;
 					})
@@ -36,7 +40,7 @@ class Main extends React.Component{
 			})
 		//GET ALL POSTS
 		axios
-			.get('http://localhost:8080/api/posts/')
+			.get(`${API_URL}/api/posts/`)
 			.then(res => {
 				this.setState({
 					postList: res.data

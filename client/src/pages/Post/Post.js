@@ -6,6 +6,9 @@ import CommentCard from '../../components/CommentCard/CommentCard';
 import CommentForm from '../../components/CommentForm/CommentForm';
 import './Post.scss';
 
+const API_URL = process.env.NODE_ENV === "production" ?
+	'https://res-ource.herokuapp.com' :
+	'http://localhost:8080';
 
 class Post extends React.Component {
 	state = {
@@ -29,7 +32,7 @@ class Post extends React.Component {
 	componentDidMount() {
 		//CHECK USER AUTHENTICATION
 		axios
-			.get('http://localhost:8080/auth/check-auth', { withCredentials: true })
+			.get(`${API_URL}/auth/check-auth`, { withCredentials: true })
 			.then(res => {
 				this.setState({
 					isLoggedIn: true,
@@ -44,7 +47,7 @@ class Post extends React.Component {
 			})
 		//GET POST DATA
 		axios
-			.get(`http://localhost:8080/api/posts/${this.props.match.params.id}`)
+			.get(`${API_URL}/api/posts/${this.props.match.params.id}`)
 			.then(res => {
 				res.data[0].comment.map(comment => {
 					let filteredUser = res.data[0].commentUser.filter(user => {
@@ -123,7 +126,7 @@ class Post extends React.Component {
 			userComment: e.target.comment.value
 		}, () => {
 			axios
-				.post('http://localhost:8080/api/comments/', {
+				.post(`${API_URL}/api/comments/`, {
 					comment: this.state.userComment,
 					post_id: this.state.postId,
 					sub_id: this.state.subId,
