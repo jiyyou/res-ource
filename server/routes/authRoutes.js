@@ -9,7 +9,7 @@ router.get('/', passport.authenticate('linkedin', {
 
 //callback route for LinkedIn to redirect to 
 router.get('/redirect', passport.authenticate('linkedin'), (req, res) => {
-	res.redirect('http://res-ource.herokuapp.com/');
+	res.redirect('https://res-ource.herokuapp.com/');
 })
 
 router.get('/check-auth', (req, res) => {
@@ -19,7 +19,7 @@ router.get('/check-auth', (req, res) => {
 
 router.get('/logout', (req, res) => {
 	req.logout();
-	res.redirect('http://res-ource.herokuapp.com/');
+	res.redirect('https://res-ource.herokuapp.com/');
 })
 
 module.exports = router;
