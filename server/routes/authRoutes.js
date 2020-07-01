@@ -9,7 +9,11 @@ router.get('/', passport.authenticate('linkedin', {
 
 //callback route for LinkedIn to redirect to 
 router.get('/redirect', passport.authenticate('linkedin'), (req, res) => {
-	res.redirect('https://res-ource.herokuapp.com/');
+	if (process.env.NODE_ENV === 'production') {
+		res.redirect('https://res-ource.herokuapp.com/');	
+	} else {
+		res.redirect('http://localhost:3000/');
+	}
 })
 
 router.get('/check-auth', (req, res) => {
@@ -19,7 +23,12 @@ router.get('/check-auth', (req, res) => {
 
 router.get('/logout', (req, res) => {
 	req.logout();
-	res.redirect('https://res-ource.herokuapp.com/');
+	if (process.env.NODE_ENV === 'production') {
+		res.redirect('https://res-ource.herokuapp.com/');	
+	} else {
+		res.redirect('http://localhost:3000/');
+	}
 })
 
 module.exports = router;
+
