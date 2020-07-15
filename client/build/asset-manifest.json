@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d22156a4.chunk.css",
+    "main.js": "/static/js/main.d67753d8.chunk.js",
+    "main.js.map": "/static/js/main.d67753d8.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.ee5eeb27.js",
+    "runtime-main.js.map": "/static/js/runtime-main.ee5eeb27.js.map",
+    "static/js/2.1b1fcac1.chunk.js": "/static/js/2.1b1fcac1.chunk.js",
+    "static/js/2.1b1fcac1.chunk.js.map": "/static/js/2.1b1fcac1.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.ed67e338f13204123081f10fb5ade34d.js": "/precache-manifest.ed67e338f13204123081f10fb5ade34d.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.d22156a4.chunk.css.map": "/static/css/main.d22156a4.chunk.css.map",
+    "static/js/2.1b1fcac1.chunk.js.LICENSE.txt": "/static/js/2.1b1fcac1.chunk.js.LICENSE.txt",
+    "static/media/Header.scss": "/static/media/Icon-search.28606900.svg",
+    "static/media/RES-ource.png": "/static/media/RES-ource.7fcc2b46.png",
+    "static/media/_common.scss": "/static/media/Roboto-MediumItalic.cf23e1bb.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ee5eeb27.js",
+    "static/js/2.1b1fcac1.chunk.js",
+    "static/css/main.d22156a4.chunk.css",
+    "static/js/main.d67753d8.chunk.js"
+  ]
+}
