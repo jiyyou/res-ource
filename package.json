@@ -20,7 +20,5 @@
     "url": "https://github.com/jiyyou/res-ource/issues"
   },
   "homepage": "https://github.com/jiyyou/res-ource#readme",
-  "dependencies": {
-    "knex": "^0.21.1"
-  }
+  "dependencies": {}
 }
