@@ -118,6 +118,7 @@ class Sub extends React.Component {
 				postId={post.id}
 				title={post.title}
 				sub={this.state.name}
+				subId={this.state.subId}
 				author={post.author}
 				userId={post.user_id}
 				content={post.content}
