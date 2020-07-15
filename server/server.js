@@ -40,7 +40,8 @@ app.use('/api/user', userRoutes);
 
 let connection;
 if (process.env.JAWSDB_URL) {
-	connection = mysql.createConnection(process.env.JAWSDB_URL);
+	// connection = mysql.createConnection(process.env.JAWSDB_URL);
+	connection = mysql.createConnection(knex.production);
 } else {
 	connection = mysql.createConnection(knex.development);
 }
