@@ -16,10 +16,10 @@ module.exports = {
 		client: 'mysql',
 		connection: process.env.JAWSDB_URL,
 		migrations: {
-			directory: __dirname + '/migrations'
+			directory: './migrations'
 		},
 		seeds: {
-			directory: __dirname + '/seeds'
+			directory: './seeds'
 		}
 	}
 };
